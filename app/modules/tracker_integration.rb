@@ -12,7 +12,6 @@ module TrackerIntegration
       # :notes,
       # :other_id,
       # :owned_by,
-      # :project_id,
       # :requested_by,
       # :story_type,
       # :taguri,
@@ -20,7 +19,8 @@ module TrackerIntegration
     ]
 
     NumericFields = [
-      :estimate
+      :estimate,
+      :project_id
     ]
 
     ArrayFields = [

@@ -9,7 +9,8 @@ class Feature
   key :estimate,      Integer
   key :labels,        Array
   key :current_state, String
-
+  key :project_id,    Integer
+  
   key :refreshed_at,  Date
 
   scope :with_label, -> label do
@@ -44,7 +45,8 @@ class Feature
         TrackerIntegration::Story::NumericFields) do |value|
           value.to_i
         end
-
+      
+      self.refreshed_at = Time.now
     else
       super(story)
     end    

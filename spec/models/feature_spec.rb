@@ -37,6 +37,12 @@ describe Feature do
         subject.should be_valid
       end
 
+      it "sets refreshed_at" do
+        feature = Factory.build :feature, refreshed_at: nil
+        feature.update( Factory.build :tracker_story )
+        feature.refreshed_at.should be_present
+      end
+
       it "string fields work" do
         TrackerIntegration::Story::StringFields.each do |field|
           subject.send(field).should == story.send(field)
@@ -46,6 +52,12 @@ describe Feature do
       it "array fields work" do
         TrackerIntegration::Story::ArrayFields.each do |field|
           subject.send(field).should == story.send(field).split(',')
+        end
+      end
+
+      it "numeric fields work" do
+        TrackerIntegration::Story::NumericFields.each do |field|
+          subject.send(field).should == story.send(field).to_i
         end
       end
     end

@@ -32,6 +32,7 @@ if data is out-of-date
   %tr
     %th Name
     %th Estimate
+    %th Project ID
     %th Labels
     %th Status
     %th{colspan:3} Actions
@@ -40,13 +41,17 @@ if data is out-of-date
     %tr
       %td= feature.name
       %td= feature.estimate
+      %td= feature.project_id
       %td
         - feature.labels.each do |tag|
           = link_to tag, tagged_features_path(value: tag)
       %td= feature.current_state
-      %td= link_to 'Show', feature
-      %td= link_to 'Edit', edit_feature_path(feature)
-      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+      - if feature.refreshed_at.present?
+        %td{colspan: 3}
+      - else
+        %td= link_to 'Show', feature
+        %td= link_to 'Edit', edit_feature_path(feature)
+        %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
