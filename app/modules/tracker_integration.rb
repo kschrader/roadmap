@@ -34,8 +34,9 @@ module TrackerIntegration
     ]
   end
 
-  def self.update_project
-    project = PivotalTracker::Project.find(FinarioProject)
+  def self.update_project(token, project_id)
+    PivotalTracker::Client.token = token
+    project = PivotalTracker::Project.find(project_id)
     update_stories(project.stories.all)
   end
 

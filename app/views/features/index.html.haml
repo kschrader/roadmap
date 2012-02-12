@@ -2,6 +2,11 @@
 - label = params[:value] || ''
 %h1 Showing #{@features.count} #{label} features
 
+= flash[:notice]
+
+= link_to "Refresh", refresh_path 
+if data is out-of-date
+
 %table
   %tr
     %th Status
@@ -23,10 +28,6 @@
 
 %h3 Features to Estimate: #{set.unestimated_count}
 
-= form_tag(refresh_features_path, method: :put) do
-  = submit_tag 'Refresh DB w/latest from Tracker', 
-    confirm: 'Are you sure?  This is synchronous for the moment'
-
 %table
   %tr
     %th Name
@@ -39,7 +40,9 @@
     %tr
       %td= feature.name
       %td= feature.estimate
-      %td= feature.labels.join ', '
+      %td
+        - feature.labels.each do |tag|
+          = link_to tag, tagged_features_path(value: tag)
       %td= feature.current_state
       %td= link_to 'Show', feature
       %td= link_to 'Edit', edit_feature_path(feature)

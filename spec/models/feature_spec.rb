@@ -50,4 +50,19 @@ describe Feature do
       end
     end
   end
+
+  describe "refreshed_at" do
+    it "invalidates updates once set" do
+      feature = Factory :feature, refreshed_at: 1.day.ago
+      feature.name = "Junk"
+      feature.should_not be_valid
+    end
+
+    it "is valid if not set" do
+      feature = Factory :feature, refreshed_at: nil
+      feature.name = "Junk"
+      feature.should be_valid
+    end
+  end
+
 end

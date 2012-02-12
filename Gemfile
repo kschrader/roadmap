@@ -17,7 +17,7 @@ gem 'mongo_session_store', require: 'mongo_session_store/mongo_mapper'
 gem 'unicorn'
 gem 'capistrano'
 
-gem 'pivotal-tracker'
+gem 'pivotal-tracker', git: 'https://github.com/tomazy/pivotal-tracker.git', branch: 'cab79b1'
 
 group :test, :development do
   # Pretty printed test output

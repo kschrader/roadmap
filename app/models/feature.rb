@@ -10,8 +10,18 @@ class Feature
   key :labels,        Array
   key :current_state, String
 
+  key :refreshed_at,  Date
+
   scope :with_label, -> label do
     where :labels => label
+  end
+
+  validate :unchanged_after_refreshed
+
+  def unchanged_after_refreshed
+    if (changed? && refreshed_at_was.present? && !refreshed_at_changed?)
+      errors.add(:base, "Can't update feature attributes after Tracker refresh") 
+    end
   end
 
   def update(story)
