@@ -10,23 +10,24 @@ class Feature
     where :labels => label
   end
 
-  def self.initialize_from_story(story)
-    feature = Feature.new
+  def update_from_story(story)
 
-    feature.fillFromFieldList(
+    fillFromFieldList(
       story, 
       TrackerIntegration::Story::StringFields) do |value|
         value
       end
 
-    feature.fillFromFieldList(
+    fillFromFieldList(
       story, 
       TrackerIntegration::Story::ArrayFields) do |value|
         value.split ','
       end
-
-    feature
+    
+    self
   end
+
+  protected
 
   def fillFromFieldList(story, fieldlist)
     fieldlist.each do |field|

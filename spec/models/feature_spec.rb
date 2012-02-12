@@ -28,9 +28,9 @@ describe Feature do
 
   end
 
-  describe "initialize_from_story" do
+  describe "update_from_story" do
     let(:story) { Factory.build :tracker_story }
-    let(:subject) { Feature.initialize_from_story story}
+    let(:subject) { (Factory :feature).update_from_story(story)}
 
     it "is valid" do
       subject.should be_valid
