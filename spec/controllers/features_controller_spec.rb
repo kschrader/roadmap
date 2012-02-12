@@ -25,9 +25,9 @@ describe FeaturesController do
     end
   end
 
-  describe "GET label" do
+  describe "GET tagged" do
     it "returns 200 OK" do
-      get :label, value: "red"
+      get :tagged, value: "red"
       response.should be_success
     end
 
@@ -36,7 +36,7 @@ describe FeaturesController do
       red_feature2 = Factory :feature, labels: ["red"]
       blue_feature = Factory :feature, labels: ["blue"]
 
-      get :label, value: "red"
+      get :tagged, value: "red"
       assigns(:features).should == [red_feature1, red_feature2]
     end
   end

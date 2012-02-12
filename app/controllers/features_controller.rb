@@ -8,7 +8,7 @@ class FeaturesController < ApplicationController
     redirect_to features_path
   end
 
-  def label
+  def tagged
     @features = Feature.with_label(params[:value]).all
     render 'index'
   end

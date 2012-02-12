@@ -27,6 +27,9 @@ describe FeatureSet do
     it "works" do
       subject.total_in_state(:accepted).should == 3
     end 
+    it "handles nil" do
+      subject.total_in_state(nil).should == 0
+    end 
   end
 
   describe "unestimated_count" do

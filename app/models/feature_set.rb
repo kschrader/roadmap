@@ -9,11 +9,19 @@ class FeatureSet < Struct.new(:features)
   end
 
   def total_in_state(state)
-    sum_estimates(in_state(state))
+    if (state.present?)
+      sum_estimates(in_state(state))
+    else
+      0
+    end
   end
 
   def count_in_state(state)
-    in_state(state).count
+    if (state.present?)
+      in_state(state).count
+    else
+      0
+    end
   end
 
   def unestimated_count
@@ -26,8 +34,8 @@ class FeatureSet < Struct.new(:features)
 
   def in_state(state)
     features.select do |f|
-      f.current_state.to_sym == state.to_sym
-    end
+      f.current_state.try(:to_sym) == state.to_sym
+    end 
   end
 
   def sum_estimates(features_to_sum)
