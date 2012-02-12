@@ -33,4 +33,18 @@ module TrackerIntegration
       # :created_at
     ]
   end
+
+  def self.update_project
+    project = PivotalTracker::Project.find(FinarioProject)
+    update_stories(project.stories.all)
+  end
+
+  def self.update_stories(stories)
+    stories.each do |story|
+      feature = Feature.find_by_id story.id
+      feature ||= Feature.new
+      feature.update(story).save
+    end
+  end
+
 end

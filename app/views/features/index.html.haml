@@ -1,0 +1,25 @@
+%h1 Showing #{@features.count} features
+
+= form_tag(refresh_features_path, method: :put) do
+  = submit_tag 'Refresh DB w/latest from Tracker', 
+    confirm: 'Are you sure?  This is synchronous for the moment'
+
+%table
+  %tr
+    %th Name
+    %th Estimate
+    %th Labels
+    %th{colspan:3} Actions
+
+  - @features.each do |feature|
+    %tr
+      %td= feature.name
+      %td= feature.estimate
+      %td= feature.labels.join ', '
+      %td= link_to 'Show', feature
+      %td= link_to 'Edit', edit_feature_path(feature)
+      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Feature', new_feature_path

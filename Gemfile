@@ -3,6 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 gem 'jquery-rails'
 
+gem 'haml', '~> 3.0'
+gem 'haml-rails'
+
+gem 'bilge-pump', git: 'git://github.com/flipstone/bilge-pump.git', branch: '3390d04'
+
 gem 'mongo', '1.3.1'
 gem 'bson', '1.3.1'
 gem 'bson_ext', '1.3.1'

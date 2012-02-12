@@ -24,6 +24,13 @@ class Feature
         TrackerIntegration::Story::ArrayFields) do |value|
           value.split ','
         end
+
+      fillFromFieldList(
+        story, 
+        TrackerIntegration::Story::NumericFields) do |value|
+          value.to_i
+        end
+
     else
       super(story)
     end    
