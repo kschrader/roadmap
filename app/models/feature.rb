@@ -10,20 +10,23 @@ class Feature
     where :labels => label
   end
 
-  def update_from_story(story)
+  def update(story)
+    case story.class.to_s
+    when 'PivotalTracker::Story'
+      fillFromFieldList(
+        story, 
+        TrackerIntegration::Story::StringFields) do |value|
+          value
+        end
 
-    fillFromFieldList(
-      story, 
-      TrackerIntegration::Story::StringFields) do |value|
-        value
-      end
-
-    fillFromFieldList(
-      story, 
-      TrackerIntegration::Story::ArrayFields) do |value|
-        value.split ','
-      end
-    
+      fillFromFieldList(
+        story, 
+        TrackerIntegration::Story::ArrayFields) do |value|
+          value.split ','
+        end
+    else
+      super(story)
+    end    
     self
   end
 

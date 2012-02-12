@@ -28,25 +28,26 @@ describe Feature do
 
   end
 
-  describe "update_from_story" do
-    let(:story) { Factory.build :tracker_story }
-    let(:subject) { (Factory :feature).update_from_story(story)}
+  describe "update" do
+    describe "from story" do
+      let(:story) { Factory.build :tracker_story }
+      let(:subject) { (Factory :feature).update(story)}
 
-    it "is valid" do
-      subject.should be_valid
-    end
+      it "is valid" do
+        subject.should be_valid
+      end
 
-    it "string fields work" do
-      TrackerIntegration::Story::StringFields.each do |field|
-        subject.send(field).should == story.send(field)
+      it "string fields work" do
+        TrackerIntegration::Story::StringFields.each do |field|
+          subject.send(field).should == story.send(field)
+        end
+      end
+
+      it "array fields work" do
+        TrackerIntegration::Story::ArrayFields.each do |field|
+          subject.send(field).should == story.send(field).split(',')
+        end
       end
     end
-
-    it "array fields work" do
-      TrackerIntegration::Story::ArrayFields.each do |field|
-        subject.send(field).should == story.send(field).split(',')
-      end
-    end
-
   end
 end
