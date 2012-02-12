@@ -3,6 +3,9 @@ Roadmap::Application.routes.draw do
 
   resources :features do
     put 'refresh', on: :collection
+    get 'label/:value', 
+      on: :collection, 
+      action: :label
   end
 
 end

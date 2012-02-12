@@ -1,10 +1,14 @@
 class Feature
   include MongoMapper::Document
 
-  key :name,        String, required: true
-  key :description, String
-  key :estimate,    Integer
-  key :labels,      Array
+  #TODO Milestone/Bundles/Piles
+  #TODO Priority
+  
+  key :name,          String, required: true
+  key :description,   String
+  key :estimate,      Integer
+  key :labels,        Array
+  key :current_state, String
 
   scope :with_label, -> label do
     where :labels => label

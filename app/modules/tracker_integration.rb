@@ -2,7 +2,7 @@ module TrackerIntegration
   module Story
     StringFields = [
       # :attachments, 
-      # :current_state,
+      :current_state,
       :description,
       :id,
       # :integration_id,

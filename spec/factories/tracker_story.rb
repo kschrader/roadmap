@@ -5,6 +5,7 @@ Factory.define :tracker_story, class: PivotalTracker::Story do |f|
   f.sequence(:url) { |n| "http://localhost/#{n}" }
   f.estimate 1
   f.labels "red, blue, green"
+  f.current_state "unstarted"
   
     # element :created_at, DateTime
     # element :accepted_at, DateTime

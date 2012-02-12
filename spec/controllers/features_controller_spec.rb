@@ -25,4 +25,20 @@ describe FeaturesController do
     end
   end
 
+  describe "GET label" do
+    it "returns 200 OK" do
+      get :label, value: "red"
+      response.should be_success
+    end
+
+    it "assigns fetched features into @features" do
+      red_feature1 = Factory :feature, labels: ["red"]
+      red_feature2 = Factory :feature, labels: ["red"]
+      blue_feature = Factory :feature, labels: ["blue"]
+
+      get :label, value: "red"
+      assigns(:features).should == [red_feature1, red_feature2]
+    end
+  end
+
 end
