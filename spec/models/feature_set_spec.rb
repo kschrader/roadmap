@@ -38,4 +38,11 @@ describe FeatureSet do
     end
   end
 
+  describe "unestimated_points" do
+    it "is projected from estimated features" do
+      subject.unestimated_points.should == 
+        (subject.average_estimated_size * subject.unestimated_count)
+    end
+  end
+
 end

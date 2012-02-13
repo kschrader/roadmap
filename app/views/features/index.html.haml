@@ -9,7 +9,7 @@ if data is out-of-date
 
 %table
   %tr
-    %th Status
+    %th By Estimate
     %th Count
     %th Estimate
     %th Avg
@@ -21,12 +21,12 @@ if data is out-of-date
   %tr
     %td Unestimated
     %td #{set.unestimated_count}
-    %td ?? pts 
+    %td #{set.unestimated_points.to_i}? pts 
     %td - 
   
 %table
   %tr
-    %th Status
+    %th By Status
     %th Count
     %th Estimate
     %th Avg

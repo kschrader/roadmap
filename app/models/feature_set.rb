@@ -5,7 +5,9 @@ class FeatureSet < Struct.new(:features)
   end
 
   def average_estimated_size
-    (total_estimate.to_f / (features.count - unestimated_count).to_f)
+    @average_estimated_size ||=
+      ( total_estimate.to_f / 
+        (features.count - unestimated_count).to_f )
   end
 
   def total_in_state(state)
@@ -28,6 +30,10 @@ class FeatureSet < Struct.new(:features)
     unestimated_count ||= features.select do |f|
       f.estimate.to_i < 0
     end.count
+  end
+
+  def unestimated_points
+    average_estimated_size * unestimated_count
   end
 
   protected
