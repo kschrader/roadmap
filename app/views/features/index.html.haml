@@ -12,7 +12,7 @@ if data is out-of-date
     %th By Estimate
     %th Count
     %th Estimate
-    %th Avg
+    %th Avg    
   %tr
     %td Estimated
     %td #{@features.count - set.unestimated_count}
@@ -57,8 +57,8 @@ if data is out-of-date
       %td= feature.current_state
       - if feature.refreshed_at.present?
         %td{colspan: 3}
+          = link_to 'Show', feature
       - else
-        %td= link_to 'Show', feature
         %td= link_to 'Edit', edit_feature_path(feature)
         %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
 

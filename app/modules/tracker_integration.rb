@@ -4,7 +4,6 @@ module TrackerIntegration
       # :attachments, 
       :current_state,
       :description,
-      :id,
       # :integration_id,
       # :jira_id,
       # :jira_url,
@@ -42,7 +41,7 @@ module TrackerIntegration
 
   def self.update_stories(stories)
     stories.each do |story|
-      feature = Feature.find_by_id story.id
+      feature = Feature.find_by_tracker_id story.id
       feature ||= Feature.new
       feature.update(story).save
     end
