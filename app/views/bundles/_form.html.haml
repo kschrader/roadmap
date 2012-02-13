@@ -1,0 +1,13 @@
+= form_for @bundle do |f|
+  -if @bundle.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bundle.errors.count, "error")} prohibited this bundle from being saved:"
+      %ul
+        - @bundle.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

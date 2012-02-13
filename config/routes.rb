@@ -1,4 +1,6 @@
 Roadmap::Application.routes.draw do
+  resources :bundles
+
   root to: 'features#index'
 
   put 'run_refresh', controller: 'refresh', action: :run_refresh
