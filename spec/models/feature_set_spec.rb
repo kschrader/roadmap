@@ -23,6 +23,15 @@ describe FeatureSet do
     end
   end
 
+  describe "average_estimated_size" do
+    it "handles 0 counts" do
+      all_unestimated = [ unestimated, unestimated]
+      set = FeatureSet.new(all_unestimated)
+      set.average_estimated_size.should == 0
+    end
+  end
+
+
   describe "total_in_state" do
     it "works" do
       subject.total_in_state(:accepted).should == 3
