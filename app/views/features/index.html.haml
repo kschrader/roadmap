@@ -17,16 +17,25 @@ if data is out-of-date
     %td Estimated
     %td #{@features.count - set.unestimated_count}
     %td #{set.total_estimate} pts 
-    %td #{set.average_estimated_size} pts
+    %td #{format_float(set.average_estimated_size)} pts
+  %tr
+    %td Unestimated
+    %td #{set.unestimated_count}
+    %td ?? pts 
+    %td - 
   
+%table
+  %tr
+    %th Status
+    %th Count
+    %th Estimate
+    %th Avg
   - [:unscheduled, :unstarted, :started, :accepted].each do |st|
     %tr
       %td= st.capitalize
       %td= set.count_in_state(st)
       %td #{set.total_in_state(st)} pts 
       %td -
-
-%h3 Features to Estimate: #{set.unestimated_count}
 
 %table
   %tr
