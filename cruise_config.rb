@@ -5,7 +5,7 @@ Project.configure do |project|
   project.email_notifier.from = 'development@flipstone.com'
 
   #project.build_command = %{rake cruise}
-  project.build_command = %{bundle exec "unset RUBYOPT BUNDLE_GEMFILE GEM_HOME && cd /home/ubuntu/.cruise/projects/roadmap-qa/work && rvm 1.9.2 exec bundle install --deployment && rvm 1.9.2 exec bundle exec rake cruise"}
+  project.build_command = %{bundle exec "unset RUBYOPT BUNDLE_GEMFILE GEM_HOME && cd /home/ubuntu/.cruise/projects/roadmap-qa/work && rvm 1.9.2 exec bundle install && rvm 1.9.2 exec bundle exec rake cruise"}
 
   # Defaults to '--path=#{project.gem_install_path} --gemfile=#{project.gemfile} --no-color'
   #project.bundler_args = "--deployment "
