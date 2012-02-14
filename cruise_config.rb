@@ -4,9 +4,9 @@ Project.configure do |project|
   # project.email_notifier.emails = ['development@flipstone.com']
   project.email_notifier.from = 'development@flipstone.com'
 
-  project.build_command = %{bundle exec rake cruise}
+  project.build_command = %{rake cruise}
 
   # Defaults to '--path=#{project.gem_install_path} --gemfile=#{project.gemfile} --no-color'
-  project.bundler_args = "--path=/usr/local/rvm/gems/ruby-1.9.2-p290"
+  # project.bundler_args = "--path="
 
 end
