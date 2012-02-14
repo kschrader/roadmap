@@ -7,6 +7,6 @@ Project.configure do |project|
   project.build_command = %{rake cruise}
 
   # Defaults to '--path=#{project.gem_install_path} --gemfile=#{project.gemfile} --no-color'
-  # project.bundler_args = "--path="
+  project.bundler_args = "--deployment "
 
 end
