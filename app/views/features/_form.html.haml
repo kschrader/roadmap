@@ -6,5 +6,20 @@
         - @feature.errors.full_messages.each do |msg|
           %li= msg
 
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :estimate
+    = f.text_field :estimate
+  .field
+    = f.label :project_id
+    = f.text_field :project_id
+  .field
+    = f.label :current_state
+    = f.text_field :current_state
+  .field
+    = f.label :tracker_id
+    = f.text_field :tracker_id
   .actions
     = f.submit 'Save'

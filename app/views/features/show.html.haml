@@ -1,6 +1,23 @@
 %p#notice= notice
 
-= @feature.inspect
+%table
+  %tr
+    %th Name
+    %th Estimate
+    %th Project ID
+    %th Labels
+    %th Status
+    %th Tracker ID
+    %tr
+      %td= @feature.name
+      %td= @feature.estimate
+      %td= @feature.project_id
+      %td
+        - @feature.labels.each do |tag|
+          = link_to tag, tagged_features_path(value: tag)
+      %td= @feature.current_state
+      %td= @feature.tracker_id
+
 
 = link_to 'Edit', edit_feature_path(@feature)
 \|
