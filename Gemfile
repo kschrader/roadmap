@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'haml', '~> 3.0'
 gem 'haml-rails'
 
-gem 'bilge-pump', git: 'git://github.com/flipstone/bilge-pump.git', branch: '3390d04'
+gem 'bilge-pump', git: 'https://github.com/flipstone/bilge-pump.git', branch: '3390d04'
 
 gem 'mongo', '1.3.1'
 gem 'bson', '1.3.1'
