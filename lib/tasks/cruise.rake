@@ -1,7 +1,8 @@
 task :cruise do
   ENV['METRICS_DIR'] = ENV['CC_BUILD_ARTIFACTS'] || 'tmp'
+  ENV['RAILS_ENV'] = 'cruise'
 
-  sh "rake"
+  sh "rake spec"
   # sh "rake cruise_production"
 end
 

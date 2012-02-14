@@ -8,7 +8,7 @@ Roadmap::Application.load_tasks
 
 Rake::Task[:spec].clear
 
-if Rails.env.test? || Rails.env.development?
+if Rails.env.test? || Rails.env.development? || Rails.env.cruise?
   Rspec::Core::RakeTask.new(:spec) do |t|
      t.verbose = false
      t.rspec_opts = "--color"

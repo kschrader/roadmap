@@ -19,7 +19,7 @@ gem 'capistrano'
 
 gem 'pivotal-tracker', git: 'https://github.com/tomazy/pivotal-tracker.git', branch: 'cab79b1'
 
-group :test, :development do
+group :test, :development, :cruise do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
   gem 'rspec'

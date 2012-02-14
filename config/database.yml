@@ -1,5 +1,8 @@
 development:
   uri: mongodb://localhost:27017/roadmap_development
+
+test:
+  uri: mongodb://localhost:27017/roadmap_development
   
-development:
-  uri: mongodb://localhost:27017/roadmap_test
+cruise:
+  uri: mongodb://cruise:cruise@staff.mongohq.com:10069/roadmap-cruise
