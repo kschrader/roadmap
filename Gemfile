@@ -15,7 +15,8 @@ gem 'mongo_mapper', '0.9.2'
 gem 'mongo_session_store', require: 'mongo_session_store/mongo_mapper'
 
 gem 'unicorn'
-gem 'capistrano'
+gem 'capistrano', '~> 2.5'
+gem 'flipstone-deployment', git: 'git://github.com/flipstone/flipstone-deployment.git', branch: 'fc71e69'
 
 gem 'pivotal-tracker', git: 'https://github.com/tomazy/pivotal-tracker.git', branch: 'cab79b1'
 
