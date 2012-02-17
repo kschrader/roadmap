@@ -32,19 +32,19 @@ class Feature
   def update(story)
     case story.class.to_s
     when 'PivotalTracker::Story'
-      fillFromFieldList(
+      fill_from_field_list(
         story, 
         TrackerIntegration::Story::StringFields) do |value|
           value
         end
 
-      fillFromFieldList(
+      fill_from_field_list(
         story, 
         TrackerIntegration::Story::ArrayFields) do |value|
           value.split ','
         end
 
-      fillFromFieldList(
+      fill_from_field_list(
         story, 
         TrackerIntegration::Story::NumericFields) do |value|
           value.to_i
@@ -54,13 +54,13 @@ class Feature
       self.tracker_id = story.id
     else
       super(story)
-    end    
+    end
     self
   end
 
   protected
 
-  def fillFromFieldList(story, fieldlist)
+  def fill_from_field_list(story, fieldlist)
     fieldlist.each do |field|
       value = story.send field
       if (value)
