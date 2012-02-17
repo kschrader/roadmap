@@ -3,6 +3,5 @@ class Bundle
 
   friendly_id :name
 
-  key :name,          String, required: true
-
+  key :name,          String, required: true  
 end

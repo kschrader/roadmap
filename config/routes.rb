@@ -1,5 +1,14 @@
 Roadmap::Application.routes.draw do
-  resources :bundles
+  resources :bundles do 
+    post 'add_feature',
+      on: :member,
+      action: :add_feature,
+      as: 'add_feature'
+    post 'remove_feature',
+      on: :member,
+      action: :remove_feature,
+      as: 'remove_feature'
+  end
 
   root to: 'features#index'
 

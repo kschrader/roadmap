@@ -14,6 +14,9 @@ class Feature
   
   key :refreshed_at,  Date
 
+  key :bundle_ids,     Array
+  many :bundles, :in => :bundle_ids
+
   scope :with_label, -> label do
     where :labels => label
   end

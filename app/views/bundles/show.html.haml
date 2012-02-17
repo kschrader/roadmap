@@ -1,9 +1,34 @@
-%p#notice= notice
+%div#notice= notice
 
-%p
-  %b Name:
-  = @bundle.name
+%div.bundle-header
+  %header 
+    #{@bundle.name}
+    %span.desc
+      #{@bundle.class}
+    .action-links 
+      = link_to 'Edit', edit_bundle_path(@bundle)
+      \|
+      = link_to 'Back', bundles_path
 
-= link_to 'Edit', edit_bundle_path(@bundle)
-\|
-= link_to 'Back', bundles_path
+
+%div.bundle-details
+  - if @attached_features.any? 
+    .features-attached
+      %header #{@bundle.name.capitalize}
+      %ul
+        - @attached_features.each do |feature|
+          %li.clear
+            = feature.name
+            = form_tag remove_feature_bundle_path(@bundle) do |f|
+              = hidden_field_tag :feature_id, feature.id
+              = submit_tag '-'
+  - if @available_features.any?
+    .features-available
+      %header Available Features
+      %ul
+        - @available_features.each do |feature| 
+          %li.clear
+            = feature.name
+            = form_tag add_feature_bundle_path(@bundle) do |f|
+              = hidden_field_tag :feature_id, feature.id
+              = submit_tag '+'
