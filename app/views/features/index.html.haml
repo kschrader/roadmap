@@ -59,6 +59,7 @@ if data is out-of-date
         %td{colspan: 3}
           = link_to 'Show', feature
       - else
+        %td= link_to 'Schedule', feature
         %td= link_to 'Edit', edit_feature_path(feature)
         %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
 

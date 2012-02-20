@@ -12,6 +12,7 @@ Roadmap::Application.routes.draw do
 
   root to: 'features#index'
 
+  put 'run_schedule', controller: 'features', action: :run_schedule
   put 'run_refresh', controller: 'refresh', action: :run_refresh
   get 'refresh', controller: 'refresh', action: :refresh
 

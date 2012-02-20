@@ -18,6 +18,22 @@
       %td= @feature.current_state
       %td= @feature.tracker_id
 
+  - if @feature.tracker_id == nil
+    %p 
+      %span API Key:
+      = text_field_tag :api_token
+    %p 
+      %span Project ID:
+      = text_field_tag :project_id
+    %p 
+      %span 
+      = hidden_field_tag 'feature_id', @feature.id
+    = submit_tag 'Schedule Feature', 
+      confirm: 'Are you sure?  This is synchronous for the moment'
+      
+
+
+
 
 = link_to 'Edit', edit_feature_path(@feature)
 \|
