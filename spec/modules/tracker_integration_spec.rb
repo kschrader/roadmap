@@ -48,6 +48,9 @@ describe TrackerIntegration do
       new_story.labels.should == feature.labels
       new_story.description.should == feature.description
 
+    end
+
+
   end
 
 end

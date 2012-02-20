@@ -19,17 +19,18 @@
       %td= @feature.tracker_id
 
   - if @feature.tracker_id == nil
-    %p 
-      %span API Key:
-      = text_field_tag :api_token
-    %p 
-      %span Project ID:
-      = text_field_tag :project_id
-    %p 
-      %span 
-      = hidden_field_tag 'feature_id', @feature.id
-    = submit_tag 'Schedule Feature', 
-      confirm: 'Are you sure?  This is synchronous for the moment'
+    = form_tag(run_schedule_path, method: :put) do
+      %p 
+        %span API Key:
+        = text_field_tag :api_token
+      %p 
+        %span Project ID:
+        = text_field_tag :project_id
+      %p 
+        %span 
+        = hidden_field_tag 'feature_id', @feature.id
+      = submit_tag 'Schedule Feature', 
+        confirm: 'Are you sure?  This is synchronous for the moment'
       
 
 
