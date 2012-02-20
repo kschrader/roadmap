@@ -8,7 +8,7 @@ gem 'haml-rails'
 
 gem 'bilge-pump',
   git: 'git://github.com/flipstone/bilge-pump.git', 
-  ref: '3390d04'
+  branch: '3390d04'
 
 gem 'mongo', '1.3.1'
 gem 'bson', '1.3.1'
