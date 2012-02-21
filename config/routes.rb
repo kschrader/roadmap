@@ -17,7 +17,8 @@ Roadmap::Application.routes.draw do
   get 'refresh', controller: 'refresh', action: :refresh
 
   resources :features do
-    get 'tagged/:value', 
+    get 'tagged/:value',
+      :constraints => { :value =>  /[^\/]+/ },
       on: :collection, 
       action: :tagged,
       as: 'tagged'
