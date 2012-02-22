@@ -3,13 +3,16 @@
 %table
   %tr
     %th Name
+    %th Total Estimates
+    %th Unestimated
     %th
     %th
-    %th
-
+    %th 
   - @bundles.each do |bundle|
     %tr
       %td= bundle.name
+      %td= bundle.total_estimates
+      %td= bundle.unestimated_total
       %td= link_to 'Show', bundle
       %td= link_to 'Edit', edit_bundle_path(bundle)
       %td= link_to 'Destroy', bundle, :confirm => 'Are you sure?', :method => :delete
