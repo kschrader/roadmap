@@ -29,7 +29,7 @@ describe FeaturesController do
   end
 
   describe "run_schedule" do
-    TOKEN = "456ad1aa5ef09b45a72a15e5e13b8f68"
+    TOKEN = ""
     TEST_PROJECT_ID = 477483
 
     it "creates the feature in tracker" do 

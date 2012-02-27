@@ -30,14 +30,12 @@ describe TrackerIntegration do
     
 
     it "creates a story in Tracker for a feature" do
-      new_story = Factory.build :tracker_story
-      
       # Need to add your token  
-      token = "456ad1aa5ef09b45a72a15e5e13b8f68"
+      token = ""
       test_project_id = 477483
 
       feature = Factory :feature, tracker_id: nil
-      TrackerIntegration.stub(:create_feature_in_tracker).and_return(feature)
+      
       PivotalTracker::Client.token = token
       new_story = TrackerIntegration.create_feature_in_tracker(token, test_project_id, feature)
 
@@ -45,7 +43,7 @@ describe TrackerIntegration do
       
       new_story.name.should == feature.name
       new_story.estimate.should == feature.estimate
-      new_story.labels.should == feature.labels
+      new_story.labels.should == feature.labels.sort.join(',')
       new_story.description.should == feature.description
 
     end
