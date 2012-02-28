@@ -5,7 +5,7 @@ class Bundle
 
   key :name,          String, required: true  
 
-  def total_estimates
+  def estimates_total
     all_features = Feature.where(bundle_ids: self.id).all
     @total=0
     all_features.each do |f| 

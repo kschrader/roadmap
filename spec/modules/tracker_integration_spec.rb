@@ -27,8 +27,6 @@ describe TrackerIntegration do
   end
 
   describe "create_feature_in_tracker" do
-    
-
     xit "creates a story in Tracker for a feature" do
       # Need to add your token  
       token = ""
@@ -40,15 +38,10 @@ describe TrackerIntegration do
       new_story = TrackerIntegration.create_feature_in_tracker(token, test_project_id, feature)
 
       new_story.should_not be_nil
-      
       new_story.name.should == feature.name
       new_story.estimate.should == feature.estimate
       new_story.labels.should == feature.labels.sort.join(',')
       new_story.description.should == feature.description
-
     end
-
-
   end
-
 end

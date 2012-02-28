@@ -19,7 +19,7 @@
       %td= @feature.tracker_id
 
   - if @feature.tracker_id == nil
-    = form_tag(run_schedule_path, method: :put) do
+    = form_tag(schedule_path, method: :put) do
       %p 
         %span API Key:
         = text_field_tag :api_token

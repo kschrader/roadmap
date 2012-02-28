@@ -6,7 +6,7 @@ class FeaturesController < ApplicationController
     render 'index'
   end
 
-  def run_schedule
+  def schedule
     @feature = Feature.find(params[:feature_id])
 
     # create the story in tracker

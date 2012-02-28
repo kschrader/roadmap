@@ -11,7 +11,7 @@
   - @bundles.each do |bundle|
     %tr
       %td= bundle.name
-      %td= bundle.total_estimates
+      %td= bundle.estimates_total
       %td= bundle.unestimated_total
       %td= link_to 'Show', bundle
       %td= link_to 'Edit', edit_bundle_path(bundle)
