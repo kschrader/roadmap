@@ -50,7 +50,10 @@ module TrackerIntegration
   def self.create_feature_in_tracker(token, project_id, feature)
     PivotalTracker::Client.token = token
     project = PivotalTracker::Project.find(project_id)
-    
+    create_story_for_project(project, feature)    
+  end
+
+  def self.create_story_for_project(project, feature)
     project.stories.create(name: feature.name, estimate: feature.estimate, labels: feature.labels, description: feature.description)
   end
 
