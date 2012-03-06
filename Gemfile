@@ -22,6 +22,12 @@ gem 'flipstone-deployment', git: 'git://github.com/flipstone/flipstone-deploymen
 
 gem "pivotal-tracker", "~> 0.5.1"
 
+group :assets do
+  gem 'therubyracer'
+  gem 'sass-rails'
+  gem 'uglifier'
+end
+
 group :test, :development, :cruise do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
