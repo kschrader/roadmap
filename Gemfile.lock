@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: git://github.com/flipstone/flipstone-deployment.git
-  revision: fc71e69ad6bc9e0cce25e6209d7220f8e9ff02d5
-  branch: fc71e69
+  revision: 332bbbec321dcbb81e061d0c490ef9bd54744fc1
+  branch: 332bbbe
   specs:
     flipstone-deployment (0.0.1)
 
@@ -76,7 +76,7 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.5)
-    kgio (2.7.0)
+    kgio (2.7.2)
     libxml-ruby (2.2.2)
     mail (2.3.0)
       i18n (>= 0.4.0)
@@ -136,6 +136,10 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
+    rainbows (4.3.1)
+      kgio (~> 2.5)
+      rack (~> 1.1)
+      unicorn (~> 4.1)
     raindrops (0.8.0)
     rake (0.9.2.2)
     rdoc (3.12)
@@ -167,10 +171,12 @@ GEM
     turn (0.8.2)
       ansi (>= 1.2.2)
     tzinfo (0.3.31)
-    unicorn (4.1.1)
-      kgio (~> 2.4)
+    unicorn (4.2.0)
+      kgio (~> 2.6)
       rack
-      raindrops (~> 0.6)
+      raindrops (~> 0.7)
+    zbatery (4.1.2)
+      rainbows (~> 4.3)
 
 PLATFORMS
   ruby
@@ -194,4 +200,4 @@ DEPENDENCIES
   rspec
   rspec-rails
   turn (= 0.8.2)
-  unicorn
+  zbatery

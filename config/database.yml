@@ -3,6 +3,9 @@ development:
 
 test:
   uri: mongodb://localhost:27017/roadmap_development
-  
+
+production:
+  uri: mongodb://roadmap:roadmap@staff.mongohq.com:10065/roadmap-production
+
 cruise:
   uri: mongodb://cruise:cruise@staff.mongohq.com:10069/roadmap-cruise
