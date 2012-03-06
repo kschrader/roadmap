@@ -33,10 +33,10 @@ module TrackerIntegration
     ]
   end
 
-  def self.update_project(token, project_id)
+  def self.update_project(token, tracker_project_id)
     PivotalTracker::Client.token = token
-    project = PivotalTracker::Project.find(project_id)
-    update_stories(project.stories.all)
+    tracker_project = PivotalTracker::Project.find(tracker_project_id)
+    update_stories(tracker_project.stories.all)
   end
 
   def self.update_stories(stories)
@@ -47,14 +47,14 @@ module TrackerIntegration
     end
   end
 
-  def self.create_feature_in_tracker(token, project_id, feature)
+  def self.create_feature_in_tracker(token, tracker_project_id, feature)
     PivotalTracker::Client.token = token
-    project = PivotalTracker::Project.find(project_id)
-    create_story_for_project(project, feature)    
+    tracker_project = PivotalTracker::Project.find(tracker_project_id)
+    create_story_for_project(tracker_project, feature)    
   end
 
-  def self.create_story_for_project(project, feature)
-    project.stories.create(name: feature.name, estimate: feature.estimate, labels: feature.labels, description: feature.description)
+  def self.create_story_for_project(tracker_project, feature)
+    tracker_project.stories.create(name: feature.name, estimate: feature.estimate, labels: feature.labels, description: feature.description)
   end
 
 end
