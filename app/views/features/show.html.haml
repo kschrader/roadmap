@@ -11,7 +11,7 @@
     %tr
       %td= @feature.name
       %td= @feature.estimate
-      %td= @feature.project_id
+      %td= @feature.tracker_project_id
       %td
         - @feature.labels.each do |tag|
           = link_to tag, tagged_features_path(value: tag)
@@ -25,7 +25,7 @@
         = text_field_tag :api_token
       %p 
         %span Project ID:
-        = text_field_tag :project_id
+        = text_field_tag :tracker_project_id
       %p 
         %span 
         = hidden_field_tag 'feature_id', @feature.id

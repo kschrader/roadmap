@@ -19,7 +19,7 @@ module TrackerIntegration
 
     NumericFields = [
       :estimate,
-      :project_id
+      #:project_id
     ]
 
     ArrayFields = [

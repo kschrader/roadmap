@@ -50,7 +50,7 @@ if data is out-of-date
     %tr
       %td= feature.name
       %td= feature.estimate
-      %td= feature.project_id
+      %td= feature.tracker_project_id
       %td
         - feature.labels.each do |tag|
           = link_to tag, tagged_features_path(value: tag)

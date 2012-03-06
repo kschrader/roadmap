@@ -10,7 +10,7 @@ class Feature
   key :estimate,      Integer
   key :labels,        Array
   key :current_state, String
-  key :project_id,    Integer
+  key :tracker_project_id,    Integer
   
   key :refreshed_at,  Date
 
@@ -51,6 +51,7 @@ class Feature
         end
       
       self.refreshed_at = Time.now
+      self.tracker_project_id = story.project_id
       self.tracker_id = story.id
     else
       super(story)
