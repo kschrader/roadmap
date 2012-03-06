@@ -41,7 +41,7 @@ module TrackerIntegration
 
   def self.update_stories(stories)
     stories.each do |story|
-      feature = Feature.find_by_tracker_id story.id
+      feature = Feature.find_by_story_id story.id
       feature ||= Feature.new
       feature.update(story).save
     end

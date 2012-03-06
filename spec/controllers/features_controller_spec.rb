@@ -40,13 +40,13 @@ describe FeaturesController do
       TrackerIntegration.stub(:create_feature_in_tracker).and_return(new_story)
            
       feature_to_schedule = 
-        Factory :feature, tracker_id: nil
+        Factory :feature, story_id: nil
       
       # PUT /features/run_schedule [params]
       put :schedule,
         :feature_id => feature_to_schedule.id
       
-      assigns(:feature).tracker_id.should_not be_nil
+      assigns(:feature).story_id.should_not be_nil
     end
   end
 end

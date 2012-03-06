@@ -16,9 +16,9 @@
         - @feature.labels.each do |tag|
           = link_to tag, tagged_features_path(value: tag)
       %td= @feature.current_state
-      %td= @feature.tracker_id
+      %td= @feature.story_id
 
-  - if @feature.tracker_id == nil
+  - if @feature.story_id == nil
     = form_tag(schedule_path, method: :put) do
       %p 
         %span API Key:

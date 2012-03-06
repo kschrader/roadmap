@@ -6,7 +6,7 @@ describe TrackerIntegration do
     let (:story1) { Factory.build :tracker_story}
     let (:story2) { Factory.build :tracker_story}
 
-    let (:feature1) { Factory :feature, name: "Old Value", tracker_id: story1.id}
+    let (:feature1) { Factory :feature, name: "Old Value", story_id: story1.id}
 
     it "updates features from stories" do
       feature1.name.should == "Old Value"
@@ -15,12 +15,12 @@ describe TrackerIntegration do
     end
 
     it "inserts features for new stories" do
-      feature2 = Feature.find_by_tracker_id(story2.id)
+      feature2 = Feature.find_by_story_id(story2.id)
       feature2.should_not be_present
 
       TrackerIntegration.update_stories([story2])
 
-      feature2 = Feature.find_by_tracker_id(story2.id)
+      feature2 = Feature.find_by_story_id(story2.id)
       feature2.should be_present
       feature2.name.should == story2.name
     end
@@ -31,7 +31,7 @@ describe TrackerIntegration do
       token = "fake_token"
       test_project_id = 477483
 
-      feature = Factory :feature, tracker_id: nil
+      feature = Factory :feature, story_id: nil
       
       some_fake_project = PivotalTracker::Project.new
       PivotalTracker::Project.stub(:find).and_return(some_fake_project)
@@ -49,7 +49,7 @@ describe TrackerIntegration do
         def create(stuff)
         end
       end
-      feature = Factory :feature, tracker_id: nil      
+      feature = Factory :feature, story_id: nil      
       project = PivotalTracker::Project.new
       the_create_method = ClassWithCreate.new
       some_tracker_story = Factory.build :tracker_story

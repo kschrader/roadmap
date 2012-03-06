@@ -4,7 +4,7 @@ class Feature
   #TODO Milestone/Bundles/Piles
   #TODO Priority
   
-  key :tracker_id,    Integer
+  key :story_id,    Integer
   key :name,          String, required: true
   key :description,   String
   key :estimate,      Integer
@@ -52,7 +52,7 @@ class Feature
       
       self.refreshed_at = Time.now
       self.tracker_project_id = story.project_id
-      self.tracker_id = story.id
+      self.story_id = story.id
     else
       super(story)
     end
