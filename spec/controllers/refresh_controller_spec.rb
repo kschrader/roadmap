@@ -20,8 +20,22 @@ describe RefreshController do
     
     it "responds w redirect" do
       TrackerIntegration.should_receive(:update_project)
-      put :run_refresh
+      put :run_refresh,
+        tracker_project_id: "pants",
+        api_token: "pants"
+
+
       response.should be_redirect
     end
+
+    it "requires project_id param" do
+      TrackerIntegration.should_not_receive(:update_project)
+
+      lambda do 
+        put :run_refresh,
+          api_token: "foo"
+      end.should raise_error ArgumentError
+    end
+
   end
 end
