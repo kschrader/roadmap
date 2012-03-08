@@ -10,6 +10,10 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.text_field :project_id, :type => "hidden", :value => params[:project_id] 
+    -if params[:project_id]
+      = f.text_field :project_id, :type => "hidden", :value => params[:project_id]  
+    -else 
+      = f.label :project_id
+      = f.text_field :project_id
   .actions
     = f.submit 'Save'

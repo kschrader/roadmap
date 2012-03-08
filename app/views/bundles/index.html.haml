@@ -5,7 +5,7 @@
     %th Name
     %th Total Estimates
     %th Unestimated
-    %th
+    %th Project ID
     %th
     %th 
   - @bundles.each do |bundle|
@@ -13,6 +13,7 @@
       %td= bundle.name
       %td= bundle.estimates_total
       %td= bundle.unestimated_total
+      %td= bundle.project_id
       %td= link_to 'Show', bundle
       %td= link_to 'Edit', edit_bundle_path(bundle)
       %td= link_to 'Destroy', bundle, :confirm => 'Are you sure?', :method => :delete

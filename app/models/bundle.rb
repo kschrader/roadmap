@@ -1,7 +1,9 @@
 class Bundle
   include MongoMapper::Document
 
-  friendly_id :name
+  friendly_id :project_id
+  
+ 
   
   key :name,          String,    required: true
   key :project_id,    ObjectId
