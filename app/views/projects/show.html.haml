@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%table
+  %tr
+    %th Name
+    %th Bundles
+    %th Features
+
+    %tr
+      %td= @project.name
+      %td
+      %td
+      
+= link_to 'New Bundle', new_bundle_path(:project_id => @project.id)
+\|
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path

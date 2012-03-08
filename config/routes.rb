@@ -24,4 +24,7 @@ Roadmap::Application.routes.draw do
       as: 'tagged'
   end
 
+  resources :projects
+
+
 end

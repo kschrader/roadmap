@@ -2,8 +2,11 @@ class Bundle
   include MongoMapper::Document
 
   friendly_id :name
+  
+  key :name,          String,    required: true
+  key :project_id,    ObjectId
 
-  key :name,          String, required: true  
+  belongs_to :project
 
   def estimates_total
     all_features = Feature.where(bundle_ids: self.id).all

@@ -11,8 +11,10 @@ class Feature
   key :labels,        Array
   key :current_state, String
   key :tracker_project_id,    Integer
-  
   key :refreshed_at,  Date
+
+  key :project_id,    ObjectId
+  belongs_to :project
 
   key :bundle_ids,     Array
   many :bundles, :in => :bundle_ids

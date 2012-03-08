@@ -8,6 +8,7 @@
     %th Labels
     %th Status
     %th Tracker ID
+    %th Bundles
     %tr
       %td= @feature.name
       %td= @feature.estimate
@@ -17,6 +18,9 @@
           = link_to tag, tagged_features_path(value: tag)
       %td= @feature.current_state
       %td= @feature.story_id
+      %td
+        - @feature.bundles.each do |b|
+          = b.name
 
   - if @feature.story_id == nil
     = form_tag(schedule_path, method: :put) do
