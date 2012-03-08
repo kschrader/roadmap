@@ -1,7 +1,7 @@
 class Bundle
   include MongoMapper::Document
 
-  friendly_id :project_id
+  friendly_id :name
   
  
   
