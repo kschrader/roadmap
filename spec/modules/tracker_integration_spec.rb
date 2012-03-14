@@ -8,6 +8,14 @@ describe TrackerIntegration do
 
     let (:feature1) { Factory :feature, name: "Old Value", story_id: story1.id}
 
+    it "updates features from project" do
+      project = Factory :project, id: 1000, name: "Old Value"
+      project2 = Factory.build :project, id: 1000,name: "New Value"
+      project.name.should == "Old Value"
+      TrackerIntegration.update_stories([story1],project2)
+      project.reload.name.should == project2.name
+    end
+
     it "updates features from stories" do
       feature1.name.should == "Old Value"
       TrackerIntegration.update_stories([story1],story1)
