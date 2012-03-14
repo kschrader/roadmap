@@ -8,7 +8,10 @@
       %span API Key:
       = text_field_tag :api_token
     %p 
-      %span Project ID:
+      %span Tracker Project ID:
       = text_field_tag :tracker_project_id
+    %P
+      %span Project ID:
+      = text_field_tag :project_id
     = submit_tag 'Refresh DB w/latest from Tracker', 
       confirm: 'Are you sure?  This is synchronous for the moment'

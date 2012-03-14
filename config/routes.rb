@@ -10,7 +10,9 @@ Roadmap::Application.routes.draw do
       as: 'remove_feature'
   end
 
-  root to: 'features#index'
+  root to: 'projects#index'
+
+  match "/projects/test2/:id" => "bundles#show"
 
   put 'schedule', controller: 'features', action: :schedule
   put 'run_refresh', controller: 'refresh', action: :run_refresh
