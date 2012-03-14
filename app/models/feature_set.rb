@@ -1,13 +1,17 @@
 class FeatureSet < Struct.new(:features)
 
+  def include?(feature)
+    features.include? feature
+  end
+
   def total_estimate
     @total_estimate ||= sum_estimates(features)
   end
 
   def average_estimated_size
-    @average_estimated_size ||= 
+    @average_estimated_size ||=
       if ((count = features.count - unestimated_count) > 0)
-        ( total_estimate.to_f / 
+        ( total_estimate.to_f /
           (count - unestimated_count).to_f )
         else
           0
@@ -45,7 +49,7 @@ class FeatureSet < Struct.new(:features)
   def in_state(state)
     features.select do |f|
       f.current_state.try(:to_sym) == state.to_sym
-    end 
+    end
   end
 
   def sum_estimates(features_to_sum)

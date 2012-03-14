@@ -30,7 +30,8 @@ describe Feature do
 
   describe "update" do
     describe "from story" do
-      let(:story) { Factory.build :tracker_story }
+
+      let(:story) { Factory.build :tracker_story, accepted_at: Time.utc(2012, 2, 10) }
       let(:subject) { (Factory :feature).update(story)}
 
       it "is valid" do
@@ -58,6 +59,12 @@ describe Feature do
       it "numeric fields work" do
         TrackerIntegration::Story::NumericFields.each do |field|
           subject.send(field).should == story.send(field).to_i
+        end
+      end
+
+      it "date fields work" do
+        TrackerIntegration::Story::DateFields.each do |field|
+          subject.send(field).should == story.send(field)
         end
       end
     end

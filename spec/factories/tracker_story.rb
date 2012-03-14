@@ -7,13 +7,10 @@ Factory.define :tracker_story, class: PivotalTracker::Story do |f|
   f.labels "red, blue, green"
   f.current_state "unstarted"
   f.project_id 331770
-  
-    # element :created_at, DateTime
-    # element :accepted_at, DateTime
+  f.story_type "Feature"
 
     # element :name, String
     # element :description, String
-    # element :story_type, String
     # element :estimate, Integer
     # element :requested_by, String
     # element :owned_by, String
