@@ -4,8 +4,16 @@ class FeatureSet < Struct.new(:features)
     features.include? feature
   end
 
+  def count
+    features.count
+  end
+
   def total_estimate
     @total_estimate ||= sum_estimates(features)
+  end
+
+  def total_cost
+    @total_cost ||= features.inject(0) { |sum, f| sum + f.cost }
   end
 
   def average_estimated_size
@@ -59,4 +67,5 @@ class FeatureSet < Struct.new(:features)
       sum += value
     end
   end
+
 end

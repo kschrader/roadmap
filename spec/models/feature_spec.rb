@@ -84,4 +84,23 @@ describe Feature do
     end
   end
 
+  describe "cost" do
+    it "prices bugs at BugCost" do
+      bug = Factory.build :feature, story_type: "bug", estimate: 100
+      bug.cost.should == Feature::BugCost
+    end
+    it "prices chores at ChoreCost" do
+      chore = Factory.build :feature, story_type: "chore", estimate: 100
+      chore.cost.should == Feature::ChoreCost
+    end
+    it "prices feature at estimate" do
+      feature = Factory.build :feature, estimate: 100
+      feature.cost.should == 100
+    end
+    it "prices feature at 0 if estimate is negative" do
+      feature = Factory.build :feature, estimate: -1
+      feature.cost.should == 0
+    end
+  end
+
 end

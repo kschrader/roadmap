@@ -1,6 +1,9 @@
 class Feature
   include MongoMapper::Document
 
+  BugCost = 0.25
+  ChoreCost = 0.25
+
   key :accepted_at,           Time
   key :current_state,         String
   key :description,           String
@@ -27,6 +30,14 @@ class Feature
   def unchanged_after_refreshed
     if (changed? && refreshed_at_was.present? && !refreshed_at_changed?)
       errors.add(:base, "Can't update feature attributes after Tracker refresh")
+    end
+  end
+
+  def cost
+    case story_type
+      when TrackerIntegration::StoryType::Bug then BugCost
+      when TrackerIntegration::StoryType::Chore then ChoreCost
+      else ( estimate > 0 ? estimate : 0 )
     end
   end
 

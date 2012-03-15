@@ -1,4 +1,11 @@
 module TrackerIntegration
+  module StoryType
+    Bug = "bug"
+    Feature = "feature"
+    Chore = "chore"
+    Release = "release"
+  end
+
   module Story
     StringFields = [
       # :attachments,
