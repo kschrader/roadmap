@@ -1,5 +1,5 @@
 Roadmap::Application.routes.draw do
-  resources :bundles do 
+  resources :bundles do
     post 'add_feature',
       on: :member,
       action: :add_feature,
@@ -21,12 +21,14 @@ Roadmap::Application.routes.draw do
   resources :features do
     get 'tagged/:value',
       :constraints => { :value =>  /[^\/]+/ },
-      on: :collection, 
+      on: :collection,
       action: :tagged,
       as: 'tagged'
   end
 
-  resources :projects
+  resources :projects do
+    get "billing", controller: 'projects/reports', action: :billing
+  end
 
 
 end

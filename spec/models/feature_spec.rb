@@ -7,6 +7,20 @@ describe Feature do
     end
   end
 
+  describe "accepted_in_period" do
+    let (:jan_feature) { Factory :feature, accepted_at: DateTime.new(2012,01,15) }
+    let (:feb_feature) { Factory :feature, accepted_at: DateTime.new(2012,02,15) }
+
+    it "finds" do
+      period_begin = DateTime.new(2012, 1, 14).to_time
+      period_end = DateTime.new(2012, 1, 15).to_time
+
+      found = Feature.accepted_in_period(period_begin, period_end)
+      found.should include jan_feature
+      found.should_not include feb_feature
+    end
+ end
+
   describe "with_label" do
     let (:red_one) { Factory(:feature, labels: ['red', 'black'])}
     let (:blue_one) { Factory(:feature, labels: ['blue', 'brown'])}

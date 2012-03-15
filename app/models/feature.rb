@@ -25,6 +25,17 @@ class Feature
     where :labels => label
   end
 
+  scope :accepted_in_period, -> period_start, period_end do
+    where(:accepted_at.gte => period_start)
+      .where(:accepted_at.lte => period_end)
+  end
+
+  scope :accepted_in_month, -> datetime do
+    period_begin = DateTime.new(datetime.year, datetime.month, 1).to_time
+    period_end = DateTime.new(datetime.year, datetime.month, 31).to_time
+    accepted_in_period(period_begin, period_end)
+  end
+
   validate :unchanged_after_refreshed
 
   def unchanged_after_refreshed

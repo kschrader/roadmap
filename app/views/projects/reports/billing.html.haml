@@ -1,0 +1,6 @@
+Last 12 months of #{@project.name.capitalize}
+%table
+  - @accepted_features_by_month.each do |key, month_set|
+    %tr
+      %td= key
+      %td= month_set.total_cost
