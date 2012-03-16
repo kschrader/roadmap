@@ -1,6 +1,15 @@
 Last 12 months of #{@project.name.capitalize}
-%table
-  - @accepted_features_by_month.each do |key, month_set|
+%table.billing
+  %tr
+    %th.month Month
+    %th Points
+    %th Features
+    %th Bugs
+    %th Chores
+  - @accepted_features_by_month.values.sort.reverse.each do |month_set|
     %tr
-      %td= key
+      %td= month_set.label
       %td= month_set.total_cost
+      %td= month_set.feature_types.count
+      %td= month_set.bug_types.count
+      %td= month_set.chore_types.count

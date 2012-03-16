@@ -15,13 +15,19 @@ module Projects
       features_by_month = Hash.new { |hash, key| hash[key] = Array.new }
 
       all_features.each do |f|
-        features_by_month[f.accepted_at.strftime("%b %Y")] << f
+        month = DateTime.new(f.accepted_at.year, f.accepted_at.month)
+        features_by_month[month] << f
       end
 
       @accepted_features_by_month = Hash.new
 
       features_by_month.keys.each do |key|
-        @accepted_features_by_month[key] = FeatureSet.new(features_by_month[key])
+        @accepted_features_by_month[key] =
+          FeatureSet.new(
+            features_by_month[key],
+            key.strftime("%b %Y"),
+            key
+          )
       end
 
       @accepted_features_by_month

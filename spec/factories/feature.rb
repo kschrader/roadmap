@@ -12,3 +12,10 @@ Factory.define :bug, class: Feature do |f|
   f.description { "Fix the thing." }
   f.labels { ["green", "black", "red"] }
 end
+
+Factory.define :chore, class: Feature do |f|
+  f.sequence(:name) { |n| "FACTORY Bug #{n}" }
+  f.story_type TrackerIntegration::StoryType::Chore
+  f.description { "Fix the thing." }
+  f.labels { ["green", "black", "red"] }
+end

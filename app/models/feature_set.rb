@@ -1,4 +1,4 @@
-class FeatureSet < Struct.new(:features)
+class FeatureSet < Struct.new(:features, :label, :sort_field)
 
   def include?(feature)
     features.include? feature
@@ -52,7 +52,27 @@ class FeatureSet < Struct.new(:features)
     average_estimated_size * unestimated_count
   end
 
+  def <=> (other)
+    sort_field <=> other.sort_field
+  end
+
+  def bug_types
+    by_type(TrackerIntegration::StoryType::Bug)
+  end
+
+  def chore_types
+    by_type(TrackerIntegration::StoryType::Chore)
+  end
+
+  def feature_types
+    by_type(TrackerIntegration::StoryType::Feature)
+  end
+
   protected
+
+  def by_type(story_type)
+    features.select { |f| f.story_type == story_type }
+  end
 
   def in_state(state)
     features.select do |f|

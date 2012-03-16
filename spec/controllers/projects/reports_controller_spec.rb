@@ -23,7 +23,8 @@ describe Projects::ReportsController do
       get :billing, project_id: project_with_features.id
       accepted = assigns(:accepted_features_by_month)
       accepted.should_not be_empty
-      accepted["Jan 2012"].should include jan_feature
+      jan_2012 = DateTime.new(2012,1)
+      accepted[jan_2012].should include jan_feature
     end
 
   end

@@ -40,7 +40,6 @@ describe FeatureSet do
     end
   end
 
-
   describe "total_in_state" do
     it "works" do
       subject.total_in_state(:accepted).should == 3
@@ -60,6 +59,37 @@ describe FeatureSet do
     it "is projected from estimated features" do
       subject.unestimated_points.should ==
         (subject.average_estimated_size * subject.unestimated_count)
+    end
+  end
+
+  describe "sort" do
+    it "sorts by sort_field" do
+      first = FeatureSet.new([], 'first',  "a")
+      second = FeatureSet.new([], 'second', "b")
+      third = FeatureSet.new([], 'third', "c")
+      final = FeatureSet.new([], 'final', 'd')
+
+      list = [final, third, first, second]
+
+      list.sort.should == [first, second, third, final]
+    end
+  end
+
+  describe "story type helpers" do
+    let (:bug) { Factory :bug }
+    let (:another_bug) { Factory :bug }
+    let (:chore) { Factory :chore}
+    let (:feature) {Factory :feature}
+    let (:subject) { FeatureSet.new([bug, chore, another_bug, feature])}
+
+    it "bugs" do
+      subject.bug_types.should == [bug, another_bug]
+    end
+    it "chores" do
+      subject.chore_types.should == [chore]
+    end
+    it "bugs" do
+      subject.feature_types.should == [feature]
     end
   end
 
