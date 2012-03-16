@@ -48,7 +48,7 @@ class Feature
     case story_type
       when TrackerIntegration::StoryType::Bug then BugCost
       when TrackerIntegration::StoryType::Chore then ChoreCost
-      else ( estimate > 0 ? estimate : 0 )
+      else ( (estimate && (estimate > 0)) ? estimate : 0 )
     end
   end
 

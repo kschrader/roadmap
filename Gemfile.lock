@@ -6,6 +6,14 @@ GIT
     bilge-pump (0.0.1)
 
 GIT
+  remote: git://github.com/flipstone/flipstone-charts
+  revision: 6ea34094abdf62595e27d355b25e51876349efc4
+  branch: 6ea3409
+  specs:
+    flipstone-charts (0.0.1)
+      rails (~> 3.0, >= 3.0.4)
+
+GIT
   remote: git://github.com/flipstone/flipstone-deployment.git
   revision: 332bbbec321dcbb81e061d0c490ef9bd54744fc1
   branch: 332bbbe
@@ -202,6 +210,7 @@ DEPENDENCIES
   capistrano (~> 2.5)
   factory_girl
   factory_girl_rails
+  flipstone-charts!
   flipstone-deployment!
   haml (~> 3.0)
   haml-rails

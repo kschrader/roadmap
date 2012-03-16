@@ -22,6 +22,8 @@ gem 'flipstone-deployment', git: 'git://github.com/flipstone/flipstone-deploymen
 
 gem "pivotal-tracker", "~> 0.5.1"
 
+gem 'flipstone-charts', git: "git://github.com/flipstone/flipstone-charts", branch: "6ea3409"
+
 group :assets do
   gem 'therubyracer'
   gem 'sass-rails'

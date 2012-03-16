@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Roadmap
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+
+  %body
+    = yield
+
+    = javascript_include_tag "application"
+    = javascript_include_tag "http://www.google.com/jsapi"
+    = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"

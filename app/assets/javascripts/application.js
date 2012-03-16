@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-plugins
+
 //= require_tree .
+//= require flipstone_charts

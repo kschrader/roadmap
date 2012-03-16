@@ -1,6 +1,4 @@
 %h1 Listing projects
-= link_to "Refresh", refresh_path 
-if data is out-of-date
 
 %table
   %tr
@@ -8,9 +6,9 @@ if data is out-of-date
     %th tracker_project_id
     %th Bundles
     %th Features
-    %th 
-    %th 
-    %th 
+    %th
+    %th
+    %th
   - @projects.each do |project|
     %tr
       %td= project.name

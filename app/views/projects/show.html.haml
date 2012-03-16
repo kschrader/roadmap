@@ -7,11 +7,13 @@
   %ul
     %li Features in project: #{set.count}
     %li Unestimated features: #{set.unestimated_count}
-    %li Points this month: #{FeatureSet.new(@project.features.accepted_in_month(Time.now)).total_cost}
+    %li Points this month: #{FeatureSet.new(@project.features.accepted_in_month(Time.now)).total_cost} #{link_to "Billing Report", project_billing_path(@project)}
 
 .actions
   = link_to 'New Bundle', new_bundle_path(:project_id => @project.id)
   \|
   = link_to 'Edit', edit_project_path(@project)
   \|
-  = link_to 'Back', projects_path
+  = link_to "Refresh", project_refresh_path(@project)
+  \|
+  = link_to 'Projects', projects_path

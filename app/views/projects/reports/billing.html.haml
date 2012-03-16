@@ -1,4 +1,27 @@
-Last 12 months of #{@project.name.capitalize}
+- sorted_data = @accepted_features_by_month.values.sort
+Last #{sorted_data.count} months of #{@project.name.capitalize}
+
+%table.flipstone-chart{chart_options('data-chart-is_stacked' => 'true')}
+  %thead
+    %tr
+      %th Month
+      - sorted_data.each do |month|
+        %th= month.label
+
+  %tbody
+    %tr
+      %th Features
+      - sorted_data.each do |month|
+        %td= month.total_estimate
+    %tr
+      %th Bugs
+      - sorted_data.each do |month|
+        %td= month.bug_types.count * Feature::BugCost
+    %tr
+      %th Chores
+      - sorted_data.each do |month|
+        %td= month.chore_types.count * Feature::ChoreCost
+
 %table.billing
   %tr
     %th.month Month
@@ -6,7 +29,7 @@ Last 12 months of #{@project.name.capitalize}
     %th Features
     %th Bugs
     %th Chores
-  - @accepted_features_by_month.values.sort.reverse.each do |month_set|
+  - sorted_data.reverse.each do |month_set|
     %tr
       %td= month_set.label
       %td= month_set.total_cost
