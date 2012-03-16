@@ -54,17 +54,17 @@ if data is out-of-date
       %td= feature.tracker_project_id
       %td
         - feature.labels.each do |tag|
-          = link_to tag, tagged_features_path(value: tag)
+          = link_to tag, tagged_project_features_path(feature.project,value: tag)
       %td= feature.current_state
       %td= feature.project_id
       - if feature.refreshed_at.present?
         %td{colspan: 3}
-          = link_to 'Show', feature
+          = link_to 'Show', project_feature_path(feature.project,feature)
       - else
-        %td= link_to 'Schedule', feature
-        %td= link_to 'Edit', edit_feature_path(feature)
-        %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Schedule', project_feature_path(feature.project,feature)
+        %td= link_to 'Edit', edit_project_feature_path(@project,feature)
+        %td= link_to 'Destroy', project_feature_path(@project,feature), :confirm => 'Are you sure?', :method => :delete
 
 %br
+= link_to 'New Feature', new_project_feature_path(@project)
 
-= link_to 'New Feature', new_feature_path

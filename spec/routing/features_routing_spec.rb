@@ -2,33 +2,35 @@ require "spec_helper"
 
 describe FeaturesController do
   describe "routing" do
+    let(:project) {Factory :project, name: "project101"}
 
     it "routes to #index" do
-      get("/features").should route_to("features#index")
+     
+      get("/projects/#{project.name}/features").should route_to("features#index", :project_id => project.name)
     end
 
     it "routes to #new" do
-      get("/features/new").should route_to("features#new")
+      get("/projects/#{project.name}/features/new").should route_to("features#new",:project_id => project.name)
     end
 
     it "routes to #show" do
-      get("/features/1").should route_to("features#show", :id => "1")
+      get("projects/#{project.name}/features/1").should route_to("features#show", :project_id => project.name, :id => "1")
     end
 
     it "routes to #edit" do
-      get("/features/1/edit").should route_to("features#edit", :id => "1")
+      get("/projects/#{project.name}/features/1/edit").should route_to("features#edit", :project_id => project.name, :id => "1")
     end
 
     it "routes to #create" do
-      post("/features").should route_to("features#create")
+      post("/projects/#{project.name}/features").should route_to("features#create",:project_id => project.name)
     end
 
     it "routes to #update" do
-      put("/features/1").should route_to("features#update", :id => "1")
+      put("/projects/#{project.name}/features/1").should route_to("features#update",:project_id => project.name, :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/features/1").should route_to("features#destroy", :id => "1")
+      delete("/projects/#{project.name}/features/1").should route_to("features#destroy", :project_id => project.name, :id => "1")
     end
 
   end

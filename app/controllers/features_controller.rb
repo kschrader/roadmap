@@ -1,9 +1,12 @@
 class FeaturesController < ApplicationController
   include BilgePump::Controller
 
+  model_scope [:project]
+  model_class Feature
+
   def tagged
     @features = Feature.with_label(params[:value]).all
-    render 'index'
+    render 'index' , project_id: @project.id
   end
 
   def schedule
@@ -20,7 +23,7 @@ class FeaturesController < ApplicationController
     @feature.update(story)
     @feature.save
 
-    redirect_to feature_path(@feature)
+    redirect_to project_feature_path(@project, @feature)
   end
 
 end

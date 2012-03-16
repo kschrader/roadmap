@@ -1,5 +1,8 @@
 class BundlesController < ApplicationController
   include BilgePump::Controller
+
+  model_scope [:project]
+  model_class Bundle
   
   def show
     @bundle = find_model(model_scope, params[:id])
@@ -13,7 +16,7 @@ class BundlesController < ApplicationController
     bundle = Bundle.find(params[:id])
     feature.bundles.push(bundle)
     feature.save!
-    redirect_to bundle_path
+    redirect_to project_bundle_path
   end
 
   def remove_feature
@@ -21,7 +24,7 @@ class BundlesController < ApplicationController
     bundle = Bundle.find(params[:id])
     feature.bundle_ids.delete(bundle.id)
     feature.save!
-    redirect_to bundle_path
+    redirect_to project_bundle_path
   end
 
 end

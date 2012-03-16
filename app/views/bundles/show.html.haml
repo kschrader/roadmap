@@ -6,9 +6,9 @@
     %span.desc
       #{@bundle.class}
     .action-links 
-      = link_to 'Edit', edit_bundle_path(@bundle)
+      = link_to 'Edit', edit_project_bundle_path(@project,@bundle)
       \|
-      = link_to 'Back', bundles_path
+      = link_to 'Back', project_bundles_path(@project)
 
 
 %div.bundle-details
@@ -19,7 +19,7 @@
         - @attached_features.each do |feature|
           %li.clear
             = feature.name
-            = form_tag remove_feature_bundle_path(@bundle) do |f|
+            = form_tag remove_feature_project_bundle_path(@project,@bundle) do |f|
               = hidden_field_tag :feature_id, feature.id
               = submit_tag '-'
   - if @available_features.any?
@@ -29,6 +29,6 @@
         - @available_features.each do |feature| 
           %li.clear
             = feature.name
-            = form_tag add_feature_bundle_path(@bundle) do |f|
+            = form_tag add_feature_project_bundle_path(@project,@bundle) do |f|
               = hidden_field_tag :feature_id, feature.id
               = submit_tag '+'

@@ -14,10 +14,10 @@
       %td= bundle.estimates_total
       %td= bundle.unestimated_total
       %td= bundle.project_id
-      %td= link_to 'Show', bundle
-      %td= link_to 'Edit', edit_bundle_path(bundle)
-      %td= link_to 'Destroy', bundle, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', project_bundle_path(@project,bundle)
+      %td= link_to 'Edit', edit_project_bundle_path(@project,bundle)
+      %td= link_to 'Destroy', project_bundle_path(@project,bundle), :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Bundle', new_bundle_path
+= link_to 'New Bundle', new_project_bundle_path(@project)
