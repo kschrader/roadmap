@@ -1,12 +1,13 @@
 Roadmap::Application.routes.draw do
-
   root to: 'projects#index'
 
   put 'schedule', controller: 'features', action: :schedule
-  put 'run_refresh', controller: 'refresh', action: :run_refresh
-  get 'refresh', controller: 'refresh', action: :refresh
 
   resources :projects do 
+    get "billing", controller: 'projects/reports', action: :billing
+    get "billing_detail", controller: 'projects/reports', action: :billing_detail
+    put 'run_refresh', controller: 'projects/refresh', action: :run_refresh
+    get 'refresh', controller: 'projects/refresh', action: :refresh
 
     resources :features do
       get 'tagged/:value',
@@ -27,5 +28,4 @@ Roadmap::Application.routes.draw do
         as: 'remove_feature'
     end
   end
-
 end

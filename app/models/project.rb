@@ -5,8 +5,8 @@ class Project
 
   key :name,                String, required: true
   key :tracker_project_id,  Integer
-  
+
   has_many :bundles
   has_many :features
-  
+
 end

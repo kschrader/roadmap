@@ -1,7 +1,14 @@
 module TrackerIntegration
+  module StoryType
+    Bug = "bug"
+    Feature = "feature"
+    Chore = "chore"
+    Release = "release"
+  end
+
   module Story
     StringFields = [
-      # :attachments, 
+      # :attachments,
       :current_state,
       :description,
       # :integration_id,
@@ -10,25 +17,25 @@ module TrackerIntegration
       :name,
       # :notes,
       # :other_id,
-      # :owned_by,
+      :owned_by,
       # :requested_by,
-      # :story_type,
+      :story_type
       # :taguri,
       # :url
     ]
 
     NumericFields = [
-      :estimate,
+      :estimate
       #:project_id
     ]
 
     ArrayFields = [
-      :labels,
+      :labels
       # :tasks
     ]
 
     DateFields = [
-      # :accepted_at,
+      :accepted_at
       # :created_at
     ]
   end
@@ -37,7 +44,7 @@ module TrackerIntegration
     PivotalTracker::Client.token = token
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
     update_stories(tracker_project.stories.all,tracker_project)
-  end 
+  end
 
   def self.update_stories(stories, tracker_project)
     stories.each do |story|
@@ -56,7 +63,7 @@ module TrackerIntegration
   def self.create_feature_in_tracker(token, tracker_project_id, feature)
     PivotalTracker::Client.token = token
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
-    create_story_for_project(tracker_project, feature)    
+    create_story_for_project(tracker_project, feature)
   end
 
   def self.create_story_for_project(tracker_project, feature)

@@ -4,26 +4,23 @@
 
 = flash[:notice]
 
-= link_to "Refresh", refresh_path 
-if data is out-of-date
-
 %table
   %tr
     %th By Estimate
     %th Count
     %th Estimate
-    %th Avg    
+    %th Avg
   %tr
     %td Estimated
     %td #{@features.count - set.unestimated_count}
-    %td #{set.total_estimate} pts 
+    %td #{set.total_estimate} pts
     %td #{format_float(set.average_estimated_size)} pts
   %tr
     %td Unestimated
     %td #{set.unestimated_count}
-    %td #{set.unestimated_points.to_i}? pts 
-    %td - 
-  
+    %td #{set.unestimated_points.to_i}? pts
+    %td -
+
 %table
   %tr
     %th By Status
@@ -34,11 +31,12 @@ if data is out-of-date
     %tr
       %td= st.capitalize
       %td= set.count_in_state(st)
-      %td #{set.total_in_state(st)} pts 
+      %td #{set.total_in_state(st)} pts
       %td -
 
 %table
   %tr
+    %th Type
     %th Name
     %th Estimate
     %th Tracker Project ID
@@ -49,6 +47,7 @@ if data is out-of-date
 
   - @features.each do |feature|
     %tr
+      %td= feature.story_type
       %td= feature.name
       %td= feature.estimate
       %td= feature.tracker_project_id

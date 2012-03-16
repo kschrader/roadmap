@@ -2,3 +2,18 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.billing th {
+  padding: 4px;
+}
+
+th.month {
+  width: 90px;
+}
+
+th.date {
+  width: 150px;
+}
+
+th.longname {
+  min-width: 400px;
+}

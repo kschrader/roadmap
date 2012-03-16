@@ -1,18 +1,20 @@
 %p#notice= notice
 
-%table
-  %tr
-    %th Name
-    %th Bundles
-    %th Features
+%h2 Project: #{@project.name}
 
-    %tr
-      %td= @project.name
-      %td
-      %td
-      
-= link_to 'New Bundle', new_project_bundle_path(@project)
-\|
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+.features
+  - set = FeatureSet.new(@project.features)
+  %ul
+    %li Features in project: #{set.count}
+    %li Unestimated features: #{set.unestimated_count}
+    %li Points this month: #{FeatureSet.new(@project.features.accepted_in_month(Time.now)).total_cost} #{link_to "Billing Report", project_billing_path(@project)}
+
+.actions
+  = link_to 'New Bundle', new_project_bundle_path(:project_id => @project.id)
+  \|
+  = link_to 'Edit', edit_project_path(@project)
+  \|
+  = link_to "Refresh", project_refresh_path(@project)
+  \|
+  = link_to 'Projects', projects_path
+

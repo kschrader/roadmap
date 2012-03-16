@@ -7,6 +7,20 @@ describe Feature do
     end
   end
 
+  describe "accepted_in_period" do
+    let (:jan_feature) { Factory :feature, accepted_at: DateTime.new(2012,01,15) }
+    let (:feb_feature) { Factory :feature, accepted_at: DateTime.new(2012,02,15) }
+
+    it "finds" do
+      period_begin = DateTime.new(2012, 1, 14).to_time
+      period_end = DateTime.new(2012, 1, 15).to_time
+
+      found = Feature.accepted_in_period(period_begin, period_end)
+      found.should include jan_feature
+      found.should_not include feb_feature
+    end
+ end
+
   describe "with_label" do
     let (:red_one) { Factory(:feature, labels: ['red', 'black'])}
     let (:blue_one) { Factory(:feature, labels: ['blue', 'brown'])}
@@ -30,7 +44,8 @@ describe Feature do
 
   describe "update" do
     describe "from story" do
-      let(:story) { Factory.build :tracker_story }
+
+      let(:story) { Factory.build :tracker_story, accepted_at: Time.utc(2012, 2, 10) }
       let(:subject) { (Factory :feature).update(story)}
 
       it "is valid" do
@@ -60,6 +75,12 @@ describe Feature do
           subject.send(field).should == story.send(field).to_i
         end
       end
+
+      it "date fields work" do
+        TrackerIntegration::Story::DateFields.each do |field|
+          subject.send(field).should == story.send(field)
+        end
+      end
     end
   end
 
@@ -74,6 +95,25 @@ describe Feature do
       feature = Factory :feature, refreshed_at: nil
       feature.name = "Junk"
       feature.should be_valid
+    end
+  end
+
+  describe "cost" do
+    it "prices bugs at BugCost" do
+      bug = Factory.build :feature, story_type: "bug", estimate: 100
+      bug.cost.should == Feature::BugCost
+    end
+    it "prices chores at ChoreCost" do
+      chore = Factory.build :feature, story_type: "chore", estimate: 100
+      chore.cost.should == Feature::ChoreCost
+    end
+    it "prices feature at estimate" do
+      feature = Factory.build :feature, estimate: 100
+      feature.cost.should == 100
+    end
+    it "prices feature at 0 if estimate is negative" do
+      feature = Factory.build :feature, estimate: -1
+      feature.cost.should == 0
     end
   end
 

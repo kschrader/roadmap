@@ -3,6 +3,7 @@
 %table
   %tr
     %th Name
+    %th Type
     %th Estimate
     %th Project ID
     %th Labels
@@ -11,12 +12,16 @@
     %th Bundles
     %tr
       %td= @feature.name
+      %td= @feature.story_type
       %td= @feature.estimate
       %td= @feature.tracker_project_id
       %td
         - @feature.labels.each do |tag|
           = link_to tag, tagged_project_features_path(@project,value: tag)
-      %td= @feature.current_state
+      %td
+        = @feature.current_state
+        - if @feature.accepted_at.present?
+          (#{@feature.accepted_at.strftime("%m/%d/%y")})
       %td= @feature.story_id
       %td
         - @feature.bundles.each do |b|
@@ -24,18 +29,18 @@
 
   - if @feature.story_id == nil
     = form_tag(schedule_path, method: :put) do
-      %p 
+      %p
         %span API Key:
         = text_field_tag :api_token
-      %p 
+      %p
         %span Project ID:
         = text_field_tag :tracker_project_id
-      %p 
-        %span 
+      %p
+        %span
         = hidden_field_tag 'feature_id', @feature.id
-      = submit_tag 'Schedule Feature', 
+      = submit_tag 'Schedule Feature',
         confirm: 'Are you sure?  This is synchronous for the moment'
-      
+
 
 
 

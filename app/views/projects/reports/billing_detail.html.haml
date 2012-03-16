@@ -1,0 +1,17 @@
+Showing #{@featureset.features.count} points accepted for #{@project.name.capitalize} in period.
+
+%p Period Beginning: #{@period_start.strftime("%b %d %Y")}
+%p Period Ending: #{@period_end.strftime("%b %d %Y")}
+
+%table.billing_detail
+  %tr
+    %th.date Accepted Date
+    %th.longname Feature
+    %th Points
+    %th Developer
+    - @featureset.features_by_accepted_date.reverse.each do |f|
+      %tr
+        %td= f.accepted_at.strftime("%m/%d/%y")
+        %td= f.name
+        %td= f.cost
+        %td= f.owned_by
