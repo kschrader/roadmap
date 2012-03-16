@@ -1,4 +1,5 @@
 Roadmap::Application.routes.draw do
+
   resources :bundles do
     post 'add_feature',
       on: :member,
@@ -12,11 +13,7 @@ Roadmap::Application.routes.draw do
 
   root to: 'projects#index'
 
-  match "/projects/test2/:id" => "bundles#show"
-
   put 'schedule', controller: 'features', action: :schedule
-  put 'run_refresh', controller: 'refresh', action: :run_refresh
-  get 'refresh', controller: 'refresh', action: :refresh
 
   resources :features do
     get 'tagged/:value',
@@ -28,7 +25,8 @@ Roadmap::Application.routes.draw do
 
   resources :projects do
     get "billing", controller: 'projects/reports', action: :billing
+    put 'run_refresh', controller: 'projects/refresh', action: :run_refresh
+    get 'refresh', controller: 'projects/refresh', action: :refresh
   end
-
 
 end
