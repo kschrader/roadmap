@@ -1,6 +1,6 @@
 %h2 Refresh Features from Tracker
 
-%p The application doesn't yet distinguish features from separate projects.  If you rerun this form with different project IDs, your features will all be mixed together in Roadmap (for now)
+Project: #{@project.name}
 
 .div.refresh-form
   = form_tag(project_run_refresh_path(@project), method: :put) do

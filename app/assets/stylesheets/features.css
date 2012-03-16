@@ -9,3 +9,11 @@
 th.month {
   width: 90px;
 }
+
+th.date {
+  width: 150px;
+}
+
+th.longname {
+  min-width: 400px;
+}

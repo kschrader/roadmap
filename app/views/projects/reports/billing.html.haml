@@ -1,6 +1,10 @@
 - sorted_data = @accepted_features_by_month.values.sort
-Last #{sorted_data.count} months of #{@project.name.capitalize}
-
+%p Showing #{sorted_data.count} months of #{@project.name.capitalize}
+%p Period Beginning: #{@period_start.strftime("%b %d %Y")}
+%p Period Ending: #{@period_end.strftime("%b %d %Y")}
+%p
+  View
+  = link_to "Billing Detail", project_billing_detail_path(@project, period_begin: params[:period_begin], period_end: params[:period_end])
 %table.flipstone-chart{chart_options('data-chart-is_stacked' => 'true')}
   %thead
     %tr

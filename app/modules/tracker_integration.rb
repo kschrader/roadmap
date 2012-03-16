@@ -17,7 +17,7 @@ module TrackerIntegration
       :name,
       # :notes,
       # :other_id,
-      # :owned_by,
+      :owned_by,
       # :requested_by,
       :story_type
       # :taguri,

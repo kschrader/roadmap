@@ -25,6 +25,7 @@ Roadmap::Application.routes.draw do
 
   resources :projects do
     get "billing", controller: 'projects/reports', action: :billing
+    get "billing_detail", controller: 'projects/reports', action: :billing_detail
     put 'run_refresh', controller: 'projects/refresh', action: :run_refresh
     get 'refresh', controller: 'projects/refresh', action: :refresh
   end

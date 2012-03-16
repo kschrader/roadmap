@@ -26,6 +26,12 @@ class FeatureSet < Struct.new(:features, :label, :sort_field)
       end
   end
 
+  def features_by_accepted_date
+    features.sort do |x,y|
+      x.accepted_at <=> y.accepted_at
+    end
+  end
+
   def total_in_state(state)
     if (state.present?)
       sum_estimates(in_state(state))

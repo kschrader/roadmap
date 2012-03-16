@@ -10,6 +10,7 @@ class Feature
   key :estimate,              Integer
   key :labels,                Array
   key :name,                  String, required: true
+  key :owned_by,              String
   key :refreshed_at,          Date
   key :story_id,              Integer
   key :story_type,            String
