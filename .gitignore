@@ -6,3 +6,6 @@
 /tmp
 
 .DStore
+
+# ignore secrets
+config/tracker_token
