@@ -7,5 +7,5 @@
 
 .DStore
 
-# ignore secrets
+# ignore token
 config/tracker_token
