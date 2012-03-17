@@ -1,1 +1,3 @@
-== Welcome this is a README.
+== Welcome this is a RoadMap.
+
+You need to save your pivotal tracker Toekn in app/config/tracker_token
