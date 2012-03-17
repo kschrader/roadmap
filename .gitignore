@@ -6,6 +6,7 @@
 /tmp
 
 .DStore
+.DS_Store
 
 # ignore token
 config/tracker_token
