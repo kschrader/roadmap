@@ -40,8 +40,7 @@ module TrackerIntegration
     ]
   end
 
-  def self.update_project(token, tracker_project_id)
-    PivotalTracker::Client.token = token
+  def self.update_project(tracker_project_id)
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
     update_stories(tracker_project.stories.all,tracker_project)
   end
@@ -61,7 +60,6 @@ module TrackerIntegration
   end
 
   def self.create_feature_in_tracker(token, tracker_project_id, feature)
-    PivotalTracker::Client.token = token
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
     create_story_for_project(tracker_project, feature)
   end

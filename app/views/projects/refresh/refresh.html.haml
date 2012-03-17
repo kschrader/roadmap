@@ -5,7 +5,7 @@ Project: #{@project.name}
 .div.refresh-form
   = form_tag(project_run_refresh_path(@project), method: :put) do
     %p
-      %span API Key:
-      = text_field_tag :api_token
+      / %span API Key:
+      / = text_field_tag :api_token
     = submit_tag 'Refresh DB w/latest from Tracker',
       confirm: 'Are you sure?  This is synchronous for the moment'
