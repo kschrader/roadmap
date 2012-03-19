@@ -60,3 +60,26 @@ task :set_env do
 
   }
 end
+
+namespace :secrets do
+  task :symlink do
+    run "ln -sf #{shared_path}/system/tracker_token #{release_path}/config/tracker_token"
+  end
+end
+
+before "deploy:assets:precompile", "secrets:symlink"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
