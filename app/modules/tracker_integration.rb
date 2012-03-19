@@ -59,7 +59,7 @@ module TrackerIntegration
     end
   end
 
-  def self.create_feature_in_tracker(token, tracker_project_id, feature)
+  def self.create_feature_in_tracker(tracker_project_id, feature)
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
     create_story_for_project(tracker_project, feature)
   end

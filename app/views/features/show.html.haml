@@ -10,6 +10,7 @@
     %th Status
     %th Tracker ID
     %th Bundles
+    %th Schedule
     %tr
       %td= @feature.name
       %td= @feature.story_type
@@ -26,24 +27,17 @@
       %td
         - @feature.bundles.each do |b|
           = b.name
-
-  - if @feature.story_id == nil
-    = form_tag(schedule_path, method: :put) do
-      %p
-        %span API Key:
-        = text_field_tag :api_token
-      %p
-        %span Project ID:
-        = text_field_tag :tracker_project_id
-      %p
-        %span
-        = hidden_field_tag 'feature_id', @feature.id
-      = submit_tag 'Schedule Feature',
-        confirm: 'Are you sure?  This is synchronous for the moment'
-
-
-
-
+      %td  
+        - if @feature.story_id == nil
+          = form_tag(project_schedule_path(@project), method: :post) do
+            %p
+              %span 
+              = hidden_field_tag 'tracker_project_id', @project.tracker_project_id
+            %p
+              %span
+              = hidden_field_tag 'feature_id', @feature.id
+              = submit_tag 'Schedule Feature',
+              confirm: 'Are you sure?  This is synchronous for the moment'
 
 = link_to 'Edit', edit_project_feature_path(@project,@feature)
 \|

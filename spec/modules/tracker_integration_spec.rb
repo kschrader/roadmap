@@ -36,7 +36,6 @@ describe TrackerIntegration do
 
   describe "create_feature_in_tracker" do
     it "Gets project and feature ready to be created" do
-      token = "fake_token"
       test_project_id = 477483
 
       feature = Factory :feature, story_id: nil
@@ -47,7 +46,7 @@ describe TrackerIntegration do
       some_tracker_story = Factory.build :tracker_story
       TrackerIntegration.should_receive(:create_story_for_project).with(some_fake_project, feature).and_return(some_tracker_story)
 
-      new_story = TrackerIntegration.create_feature_in_tracker(token, test_project_id, feature)
+      new_story = TrackerIntegration.create_feature_in_tracker(test_project_id, feature)
 
       new_story.should == some_tracker_story
     end

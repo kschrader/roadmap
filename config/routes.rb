@@ -1,13 +1,12 @@
 Roadmap::Application.routes.draw do
   root to: 'projects#index'
 
-  put 'schedule', controller: 'features', action: :schedule
-
   resources :projects do 
     get "billing", controller: 'projects/reports', action: :billing
     get "billing_detail", controller: 'projects/reports', action: :billing_detail
     put 'run_refresh', controller: 'projects/refresh', action: :run_refresh
     get 'refresh', controller: 'projects/refresh', action: :refresh
+    post 'schedule', controller: 'features', action: :schedule
 
     resources :features do
       get 'tagged/:value',

@@ -14,7 +14,6 @@ class FeaturesController < ApplicationController
 
     # create the story in tracker
     story = TrackerIntegration.create_feature_in_tracker(
-      params[:api_token],
       params[:tracker_project_id],
       @feature
     )

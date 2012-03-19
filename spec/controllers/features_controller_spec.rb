@@ -48,7 +48,7 @@ describe FeaturesController do
         Factory :feature, story_id: nil
       
       # PUT /features/run_schedule [params]
-      put :schedule, project_id: project.id,
+      post :schedule, project_id: project.id,
         :feature_id => feature_to_schedule.id
       
       assigns(:feature).story_id.should_not be_nil
