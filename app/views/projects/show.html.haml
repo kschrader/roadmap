@@ -5,7 +5,7 @@
 .features
   - set = FeatureSet.new(@project.features)
   %ul
-    %li Features in project: #{set.count}
+    %li Features in project: #{set.count} #{link_to 'Features', project_features_path(@project)}
     %li Unestimated features: #{set.unestimated_count}
     %li Points this month: #{FeatureSet.new(@project.features.accepted_in_month(Time.now)).total_cost} #{link_to "Billing Report", project_billing_path(@project)}
 

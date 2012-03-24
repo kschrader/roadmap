@@ -5,7 +5,6 @@
     %th Name
     %th Type
     %th Estimate
-    %th Project ID
     %th Labels
     %th Status
     %th Tracker ID
@@ -15,7 +14,6 @@
       %td= @feature.name
       %td= @feature.story_type
       %td= @feature.estimate
-      %td= @feature.tracker_project_id
       %td
         - @feature.labels.each do |tag|
           = link_to tag, tagged_project_features_path(@project,value: tag)
