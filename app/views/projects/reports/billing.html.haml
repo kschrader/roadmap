@@ -1,7 +1,15 @@
 - sorted_data = @accepted_features_by_month.values.sort
 %p Showing #{sorted_data.count} months of #{@project.name.capitalize}
-%p Period Beginning: #{@period_start.strftime("%b %d %Y")}
-%p Period Ending: #{@period_end.strftime("%b %d %Y")}
+
+= form_tag project_billing_path, :method => :get do
+  %p
+    %b Period Beginning:
+    = text_field_tag :period_start, @period_start.strftime("%m-%d-%Y"), class: 'datepicker'
+
+  %p
+    %b Period Ending:
+    = text_field_tag :period_end, @period_end.strftime("%m-%d-%Y"), class: 'datepicker'
+
 %p
   View
   = link_to "Billing Detail", project_billing_detail_path(@project, period_begin: params[:period_begin], period_end: params[:period_end])
@@ -40,3 +48,8 @@
       %td= month_set.feature_types.count
       %td= month_set.bug_types.count
       %td= month_set.chore_types.count
+
+:javascript
+  $(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: 'mm-dd-yy' });
+  });

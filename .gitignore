@@ -10,3 +10,5 @@
 
 # ignore token
 config/tracker_token
+
+public/assets
