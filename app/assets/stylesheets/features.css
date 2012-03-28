@@ -17,3 +17,29 @@ th.date {
 th.longname {
   min-width: 400px;
 }
+
+.billing-header {
+  overflow: auto;
+  margin-bottom: 20px;
+}
+
+.billing-summary-table {
+  float: right;
+}
+
+.billing-summary {
+  clear: both;
+}
+
+.billing-summary thead {
+  background-color: gray;
+  color: white;
+}
+
+.billing-summary td {
+  padding: 0 5px 0 5px;
+}
+
+.billing-summary tr.total {
+  font-weight: bold;
+}

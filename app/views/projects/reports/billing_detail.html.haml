@@ -1,7 +1,37 @@
-Showing #{@featureset.total_cost} points accepted for #{@project.name.capitalize} in period.
+.billing-header
+  .billing-summary-table
+    %table.billing-summary
+      %thead
+        %tr
+          %td Story Type
+          %td Count
+          %td Points
+      %tbody
+        %tr
+          %td Features
+          %td= @featureset.feature_types.count
+          %td= @featureset.feature_cost
 
-%p Period Beginning: #{@period_start.strftime("%b %d %Y")}
-%p Period Ending: #{@period_end.strftime("%b %d %Y")}
+        %tr
+          %td Bugs
+          %td= @featureset.bug_types.count
+          %td= @featureset.bug_cost
+
+        %tr
+          %td Chores
+          %td= @featureset.chore_types.count
+          %td= @featureset.chore_cost
+
+        %tr.total
+          %td TOTAL
+          %td= @featureset.features.count
+          %td= @featureset.total_cost
+
+  .billing-text
+    Showing #{@featureset.total_cost} points accepted for #{@project.name.capitalize} in period.
+
+    %p Period Beginning: #{@period_start.strftime("%b %d %Y")}
+    %p Period Ending: #{@period_end.strftime("%b %d %Y")}
 
 %table.billing_detail
   %tr

@@ -13,7 +13,19 @@ class FeatureSet < Struct.new(:features, :label, :sort_field)
   end
 
   def total_cost
-    @total_cost ||= features.inject(0) { |sum, f| sum + f.cost }
+    @total_cost ||= sum_costs(features)
+  end
+
+  def bug_cost
+    @bug_cost ||= sum_costs(bug_types)
+  end
+
+  def feature_cost
+    @feature_cost ||= sum_costs(feature_types)
+  end
+
+  def chore_cost
+    @chore_cost ||= sum_costs(chore_types)
   end
 
   def average_estimated_size
@@ -93,5 +105,10 @@ class FeatureSet < Struct.new(:features, :label, :sort_field)
       sum += value
     end
   end
+
+  def sum_costs(features_to_price)
+    features_to_price.inject(0) { |sum, f| sum + f.cost }
+  end
+
 
 end

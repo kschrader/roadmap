@@ -30,6 +30,13 @@ describe FeatureSet do
     it "works" do
       subject.total_cost.should == 102.25
     end
+
+    it "is sum of bugs, chores and features" do
+      subject.total_cost.should ==
+        subject.bug_cost +
+        subject.chore_cost +
+        subject.feature_cost
+    end
   end
 
   describe "average_estimated_size" do
