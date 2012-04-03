@@ -75,10 +75,20 @@ describe Feature do
 
       let(:story) { Factory.build :tracker_story, accepted_at: Time.utc(2012, 2, 10) }
       let(:subject) { (Factory :feature).update(story)}
+      let(:feature) {Factory :feature}
 
       it "is valid" do
         subject.should be_valid
       end
+
+      it "is getting refresh_time" do
+        refresh_time = Time.new(2009,02,02)
+
+        feature.update(story, refresh_time)
+
+        feature.refreshed_at.should == refresh_time
+      end
+
 
       it "sets refreshed_at" do
         feature = Factory.build :feature, refreshed_at: nil

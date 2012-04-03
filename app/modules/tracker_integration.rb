@@ -46,6 +46,7 @@ module TrackerIntegration
   end
 
   def self.update_stories(stories, tracker_project)
+    refresh_time = Time.now
     stories.each do |story|
       project = Project.find_by_tracker_project_id tracker_project.id
       project ||= Project.new
@@ -55,8 +56,10 @@ module TrackerIntegration
       feature = Feature.find_by_story_id story.id
       feature ||= Feature.new
       feature.project_id = project.id
-      feature.update(story).save
+      feature.update(story, refresh_time).save
     end
+      refresh_time_without_usec=refresh_time.change(:usec => 0)
+      Feature.set({:tracker_project_id => tracker_project.id, refreshed_at: { :$lt => refresh_time_without_usec }}, :story_type => "Deleted")
   end
 
   def self.create_feature_in_tracker(tracker_project_id, feature)

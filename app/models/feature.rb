@@ -11,7 +11,7 @@ class Feature
   key :labels,                Array
   key :name,                  String, required: true
   key :owned_by,              String
-  key :refreshed_at,          Date
+  key :refreshed_at,          Time
   key :story_id,              Integer
   key :story_type,            String
   key :tracker_project_id,    Integer
@@ -55,7 +55,7 @@ class Feature
     end
   end
 
-  def update(story)
+  def update(story, refresh_time=Time.now)
     case story.class.to_s
     when 'PivotalTracker::Story'
       fill_from_field_list(
@@ -82,7 +82,7 @@ class Feature
           value
         end
 
-      self.refreshed_at = Time.now
+      self.refreshed_at = refresh_time
       self.tracker_project_id = story.project_id
       self.story_id = story.id
     else
