@@ -8,17 +8,45 @@ describe Feature do
   end
 
   describe "accepted_in_period" do
-    let (:jan_feature) { Factory :feature, accepted_at: DateTime.new(2012,01,15) }
-    let (:feb_feature) { Factory :feature, accepted_at: DateTime.new(2012,02,15) }
+    let (:jan_feature) { Factory :feature, accepted_at: Time.new(2012,01,25) }
+    let (:feb_feature) { Factory :feature, accepted_at: Time.new(2012,02,01) }
 
-    it "finds" do
-      period_begin = DateTime.new(2012, 1, 14).to_time
-      period_end = DateTime.new(2012, 1, 15).to_time
-
+    it "finds on trailing boundary" do
+      period_begin = Time.new(2012, 1, 1, 0, 0)
+      period_end = Time.new(2012, 1, 31, 23, 59, 59)
+      
       found = Feature.accepted_in_period(period_begin, period_end)
       found.should include jan_feature
       found.should_not include feb_feature
     end
+ end
+
+  describe "accepted_in_month" do 
+    let (:jan_feature_first) {Factory :feature, accepted_at: Time.new(2012,1,1) }
+    let (:jan_feature_last ) {Factory :feature, accepted_at: Time.new(2012,1,31) }
+    let (:feb_feature_first) {Factory :feature, accepted_at: Time.new(2012,2,1) }
+    let (:feb_feature_last) {Factory :feature, accepted_at: Time.new(2012,2,29) }
+
+    it "excludes next months features" do
+      features= Feature.accepted_in_month(Time.new(2012,01,05))
+
+      features.should include jan_feature_first
+      features.should include jan_feature_last
+      
+      features.should_not include feb_feature_first
+      features.should_not include feb_feature_last
+    end
+
+    it "excludes previous months features" do
+      features= Feature.accepted_in_month(Time.new(2012,02,05))
+
+      features.should include feb_feature_first
+      features.should include feb_feature_last
+
+      features.should_not include jan_feature_first
+      features.should_not include jan_feature_last      
+    end
+
  end
 
   describe "with_label" do
