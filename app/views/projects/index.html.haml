@@ -3,19 +3,21 @@
 %table
   %tr
     %th Name
-    %th tracker_project_id
     %th Bundles
     %th Features
-    %th
+    %th Points this month
+    %th Last Refreshed
+    %th Tracker Project ID
     %th
     %th
   - @projects.each do |project|
     %tr
-      %td= project.name
+      %td= link_to project.name, project
+      %td= link_to project.bundles.count, project_bundles_path(project)
+      %td= link_to project.features.count, project_features_path(project)
+      %td= link_to FeatureSet.new(project.features.accepted_in_month(Time.now)).total_cost, project_billing_path(project)
+      %td= link_to project.refreshed_at, project_refresh_path(project)
       %td= project.tracker_project_id
-      %td
-      %td
-      %td= link_to 'Show', project
       %td= link_to 'Edit', edit_project_path(project)
       %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
 

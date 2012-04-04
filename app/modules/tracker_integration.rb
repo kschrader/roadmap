@@ -52,6 +52,7 @@ module TrackerIntegration
       project ||= Project.new
       project.tracker_project_id = tracker_project.id
       project.name = tracker_project.name
+      project.refreshed_at = refresh_time
       project.save
       feature = Feature.find_by_story_id story.id
       feature ||= Feature.new
