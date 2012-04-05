@@ -34,6 +34,22 @@ describe TrackerIntegration do
     end
   end
 
+  describe "check if tracker deleted" do
+    it "sets type as deleted" do
+      story1 = Factory.build :tracker_story
+      feature = Factory :feature , :refreshed_at => Time.new(2009,1,03),:tracker_project_id => story1.id
+      refresh_time = Time.new(2012,2,03)
+
+      TrackerIntegration.mark_deleted_features(story1,refresh_time)
+      
+      feature.reload
+      feature.story_type.should == "Deleted"
+
+    end
+
+  end
+
+
   describe "create_feature_in_tracker" do
     it "Gets project and feature ready to be created" do
       test_project_id = 477483

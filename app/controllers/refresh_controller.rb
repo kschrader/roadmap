@@ -11,12 +11,11 @@ class RefreshController < ApplicationController
 
   def run_refresh
     tracker_project_id = params[:tracker_project_id]
-    token = params[:api_token]
 
     raise ArgumentError.new("Invalid argument.  Project ID required") unless tracker_project_id.present?
     raise ArgumentError.new("Invalid argument.  Token required") unless token.present?
 
-    TrackerIntegration.update_project(params[:api_token], tracker_project_id)
+    TrackerIntegration.update_project(tracker_project_id)
     flash[:notice] = 'Features fetched and updated.  Sorry for the wait.'
     redirect_to projects_path
   end

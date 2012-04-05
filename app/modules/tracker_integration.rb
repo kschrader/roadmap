@@ -58,10 +58,15 @@ module TrackerIntegration
       feature ||= Feature.new
       feature.project_id = project.id
       feature.update(story, refresh_time).save
-    end
+    end  
+      mark_deleted_features(tracker_project,refresh_time)
+  end
+
+  def self.mark_deleted_features(tracker_project,refresh_time)
       refresh_time_without_usec=refresh_time.change(:usec => 0)
       Feature.set({:tracker_project_id => tracker_project.id, refreshed_at: { :$lt => refresh_time_without_usec }}, :story_type => "Deleted")
   end
+
 
   def self.create_feature_in_tracker(tracker_project_id, feature)
     tracker_project = PivotalTracker::Project.find(tracker_project_id)
