@@ -19,9 +19,9 @@ describe BundlesController do
     let(:project) {Factory :project, name: "project101"}
     let(:bundle)  {Factory :bundle, project_id: project.id}
     let (:create_feature_with_hello_bundle_id) {
-          Factory :feature, bundle_ids: ["hello"], name: "not_attached"}
+          Factory :feature, bundle_ids: ["hello"], name: "not_attached",:project_id => project.id}
     let(:create_feature_with_same_bundle_id) {
-          Factory :feature, bundle_ids: [bundle.id], name: "attached"}
+          Factory :feature, bundle_ids: [bundle.id], name: "attached", :project_id => project.id}
 
     it "shows features NOT attached to the bundle" do
       project
