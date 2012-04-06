@@ -6,7 +6,7 @@ class BundlesController < ApplicationController
   
   def show
     @bundle = find_model(model_scope, params[:id])
-    @available_features = Feature.where( :bundle_ids => { :$ne => @bundle.id } ).all
+    @available_features = Feature.where( :project_id => @bundle.project_id, :bundle_ids => { :$ne => @bundle.id } ).all
     @attached_features = Feature.find_all_by_bundle_ids(@bundle.id)
     respond_with @bundle
   end
