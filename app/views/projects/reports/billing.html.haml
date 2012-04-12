@@ -4,11 +4,11 @@
 = form_tag project_billing_path, :method => :get do
   %p
     %b Period Beginning:
-    = text_field_tag :period_start, @period_start.strftime("%m-%d-%Y"), class: 'datepicker'
+    = text_field_tag :period_start, url_date(@period_start), class: 'datepicker'
 
   %p
     %b Period Ending:
-    = text_field_tag :period_end, @period_end.strftime("%m-%d-%Y"), class: 'datepicker'
+    = text_field_tag :period_end, url_date(@period_end), class: 'datepicker'
 
 %p
   View
@@ -43,7 +43,12 @@
     %th Chores
   - sorted_data.reverse.each do |month_set|
     %tr
-      %td= month_set.label
+      %td
+        - period_month = @accepted_features_by_month.key(month_set)
+        - p_begin = period_month.beginning_of_month
+        - p_end = period_month.end_of_month
+        =link_to month_set.label, project_billing_detail_path(@project, period_begin: url_date(p_begin), period_end: url_date(p_end))
+
       %td= month_set.total_cost
       %td= month_set.feature_types.count
       %td= month_set.bug_types.count
