@@ -7,10 +7,11 @@
           %li= msg
 
   .field
+  
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :value => params[:name]
   .field
     = f.label :tracker_project_id
-    = f.text_field :tracker_project_id
+    = f.text_field :tracker_project_id, :value => params[:tracker_project_id]
   .actions
     = f.submit 'Save'

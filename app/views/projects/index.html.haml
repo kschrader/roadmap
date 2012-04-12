@@ -23,4 +23,17 @@
 
 %br
 
+%h1 Your Tracker Project
+%table
+  %tr
+    %th Name
+    %th Tracker Project ID
+    %th
+  - @projects_not_in_roadmap.each do |tracker_project|
+    %tr
+      %td= tracker_project.name
+      %td= tracker_project.id
+      %td= link_to 'add to roadmap', new_project_path(:name => tracker_project.name, :tracker_project_id => tracker_project.id)
+%br
+
 = link_to 'New project', new_project_path
